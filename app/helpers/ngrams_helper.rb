@@ -1,0 +1,2 @@
+module NgramsHelper
+end

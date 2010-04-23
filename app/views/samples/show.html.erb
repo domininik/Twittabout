@@ -1,0 +1,16 @@
+<h1>Sample text for <%= @sample.language %> language</h1>
+<h2>Language:</h2>
+<p><%=h @sample.language %></p>
+<h2>Text:</h2>
+<p><%=h @sample.body %></p>
+<hr />
+<p>Length: <%= @sample.body.length %></p>
+<%= link_to 'N-grams', sample_ngrams_path(@sample) %> |
+<%= link_to 'Edit', edit_sample_path(@sample) %> |
+<%= link_to 'Back', samples_path %>
+<p>English ratio: <%= @eng_counter %></p>
+<p>Polish ration: <%= @pol_counter %></p> 
+<% form_tag( :action => :analyze) do %>
+  <%= hidden_field_tag "sample_id", @sample.id %>
+  <%= submit_tag('Analyze') %>
+<% end %>

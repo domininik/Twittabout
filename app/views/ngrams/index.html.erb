@@ -1,0 +1,24 @@
+<h1>N-grams for <%= @sample.language %> sample text</h1>
+
+<h2>Sample text:</h2>
+<p><%= @sample.body %></p>
+<p>Length: <%= @sample.body.length %></p>
+<h2>Preprocessed text:</h2> 
+<p><%= @pre %></p>
+<p>Length: <%= @pre.length %></p>
+<h2>N-grams</h2>
+<p>Count: <%= @ngrams.size %></p>
+<% form_tag( :action => :generate_ngram) do %>
+  <%= hidden_field_tag "sample_id", @sample.id %>
+  <%= submit_tag('generate') %>
+<% end %>
+<br />
+<% form_tag( :action => :destroy_all) do %>
+<%= hidden_field_tag "sample_id", @sample.id %>
+<%= submit_tag('reset') %>
+<% end %>
+<p>(count - text)</p>
+<%= render :partial => 'ngram', :collection => @ngrams %>
+
+<p><%= link_to 'Back', sample_path(@sample) %></p>
+
