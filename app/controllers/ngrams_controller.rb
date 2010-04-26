@@ -26,9 +26,8 @@ class NgramsController < ApplicationController
       ngram.sample_id = @sample.id
       ngram.save
     end
-    # TODO N max = table.size
-    # N = 2..5
-    (1..4).each { |i| slice(table, 0, i) }
+    # N=2, N=3
+    (1..2).each { |i| slice(table, 0, i) }
             
     respond_to do |format|
       format.html {
