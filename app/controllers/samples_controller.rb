@@ -6,7 +6,7 @@ class SamplesController < ApplicationController
   # GET /samples
   # GET /samples.xml
   def index
-    @samples = Sample.all
+    @samples = Sample.find(:all, :order => "language DESC")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -91,46 +91,51 @@ class SamplesController < ApplicationController
     @sample = Sample.find(params[:sample_id])
     @test_ngrams = @sample.ngrams.find(:all, :order => "count DESC")
     @eng_sample = Sample.find_by_language("English")
-    @eng_ngrams = @eng_sample.ngrams.find(:all, :order => "count DESC")
     @pol_sample = Sample.find_by_language("Polish")
-    @pol_ngrams = @pol_sample.ngrams.find(:all, :order => "count DESC")
-    
-    @eng_counter = 0
-    @test_ngrams.each do |ele|
-      # TODO each_with_index?
-      test_position = @test_ngrams.index(ele)
-      ngram = Ngram.find(:first, :conditions => "body = '#{ele.body}' and sample_id = #{@eng_sample.id}") 
-      if ngram
-        eng_position = @eng_ngrams.index(ngram)
-        @eng_counter += eng_position - test_position
-      else
-        @eng_counter += MAX
-      end
-    end
-
-    @pol_counter = 0
-    @test_ngrams.each do |ele|
-      # TODO each_with_index?
-      test_position = @test_ngrams.index(ele)
-      ngram = Ngram.find(:first, :conditions => "body = '#{ele.body}' and sample_id = #{@pol_sample.id}") 
-      if ngram
-        pol_position = @pol_ngrams.index(ngram)
-        @pol_counter += pol_position - test_position
-      else
-        @pol_counter += MAX
-      end
-    end
     
     respond_to do |format|
       format.html {
-        if @pol_counter < @eng_counter 
-          flash[:notice] = "pol: #{@pol_counter} | eng: #{@eng_counter} <br />Text in Polish"
+        if @test_ngrams == []
+          flash[:error] = "You have to generate N-grams first"
+          redirect_to(@sample)
+        elsif @eng_sample == []
+          flash[:error] = "There was no sample English text"
+          redirect_to(samples_path)
+        elsif @pol_sample == []
+          flash[:error] = "There was no sample Polish text"
+          redirect_to(sample_path)
         else
-          flash[:notice] = "pol: #{@pol_counter} | eng: #{@eng_counter} <br />Text not in Polish"
+          @eng_ngrams = @eng_sample.ngrams.find(:all, :order => "count DESC")
+          @pol_ngrams = @pol_sample.ngrams.find(:all, :order => "count DESC")
+          
+          pol_counter = count_distance(@test_ngrams, @pol_ngrams, @pol_sample.id)
+          eng_counter = count_distance(@test_ngrams, @eng_ngrams, @eng_sample.id)
+    
+          if pol_counter < eng_counter 
+            flash[:notice] = "pol: #{pol_counter} | eng: #{eng_counter} <br />Text in Polish"
+          else
+            flash[:notice] = "pol: #{pol_counter} | eng: #{eng_counter} <br />Text not in Polish"
+          end
+          redirect_to(@sample) 
         end
-        redirect_to(@sample) 
       }
       format.xml  { render :xml => @sample }
     end
   end
+  
+  def count_distance(test_ngrams, lang_ngrams, lang_sample_id)
+    lang_counter = 0
+    @test_ngrams.each do |ele|
+      test_position = @test_ngrams.index(ele)
+      ngram = Ngram.find(:first, :conditions => "body = '#{ele.body}' and sample_id = #{lang_sample_id}") 
+      if ngram
+        lang_position = lang_ngrams.index(ngram)
+        lang_counter += lang_position - test_position
+      else
+        lang_counter += MAX
+      end
+    end
+    return lang_counter
+  end
+  
 end

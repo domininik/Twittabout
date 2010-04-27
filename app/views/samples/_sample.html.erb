@@ -1,0 +1,13 @@
+<div class="sample">
+  <% if sample.language != '' %>	  
+    <p><b>Language:</b> <%=h sample.language %></p>
+  <% end %>
+  <p><b>Text:</b> <%=h sample.body %></p>
+  <p>
+    <%= link_to 'N-grams', sample_ngrams_path(sample) %> |
+    <%= link_to 'Show', sample %> |
+    <%= link_to 'Edit', edit_sample_path(sample) %> |
+    <%= link_to 'Destroy', sample, :confirm => 'Are you sure?', :method => :delete %>
+  </p>
+</div>
+<hr />

@@ -1,6 +1,7 @@
-<h1>Sample text for <%= @sample.language %> language</h1>
-<h2>Language:</h2>
-<p><%=h @sample.language %></p>
+<% if @sample.language != '' %>
+  <h1>Sample text for <%= @sample.language %> language</h1>
+<% end %>
+
 <h2>Text:</h2>
 <p><%=h @sample.body %></p>
 <hr />

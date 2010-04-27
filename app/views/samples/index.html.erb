@@ -1,19 +1,6 @@
 <h1>Samples</h1>
 
-<% @samples.each do |sample| %>
-  <div class="sample">  
-    <p><b>Language:</b> <%=h sample.language %></p>
-    <p><b>Text:</b> <%=h sample.body %></p>
-    <p>
-      <%= link_to 'N-grams', sample_ngrams_path(sample) %> |
-      <%= link_to 'Show', sample %> |
-      <%= link_to 'Edit', edit_sample_path(sample) %> |
-      <%= link_to 'Destroy', sample, :confirm => 'Are you sure?', :method => :delete %>
-    </p>
-  </div>
-  <hr />  
-<% end %>
-
+<%= render :partial => @samples %>
 
 <br />
 
