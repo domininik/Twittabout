@@ -21,7 +21,7 @@
         </div>
         <div id="header_menu">  
           <% unless current_user %>
-            <%= link_to "Register", new_user_path %> |
+            <%#= link_to "Register", new_user_path %> |
             <%= link_to "Log in", login_path %>
           <% else %>
             <%= link_to "Edit profile", edit_user_path(:current) %> |
@@ -36,6 +36,8 @@
     <p style="color: green"><%= flash[:notice] %></p>
     <p style="color: red"><%= flash[:error] %></p>
     <%= yield %>
+  </div>
+  <div id="footer">
   </div>
 </body>
 </html>
