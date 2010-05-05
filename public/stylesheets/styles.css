@@ -17,6 +17,7 @@ body, p, ol, ul, td {
 #content, .content {
 	width: 880px;
 	margin: 20px auto;
+	padding: 20px;
 }
 
 #header {
@@ -57,7 +58,7 @@ a { color: #333; }
 .fieldWithErrors {
   padding: 2px;
   background-color: red;
-  display: table;
+  display: inline;
 }
 
 #errorExplanation {
@@ -77,6 +78,7 @@ a { color: #333; }
   margin: -7px;
   background-color: #c00;
   color: #fff;
+  text-shadow: none;
 }
 
 #errorExplanation p {
@@ -95,7 +97,7 @@ a { color: #333; }
 }
 
 .registration_form div, .login_form div {
-	margin: 20px;
+	margin: 20px 0;
 }
 
 .twitt {
