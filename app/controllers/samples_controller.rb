@@ -106,17 +106,26 @@ class SamplesController < ApplicationController
         else
           @eng_ngrams = @eng_sample.ngrams.find(:all, :order => "count DESC")
           @pol_ngrams = @pol_sample.ngrams.find(:all, :order => "count DESC")
-          @max_distance = params[:max_distance].to_i
           
-          pol_counter = count_distance(@test_ngrams, @pol_ngrams, @pol_sample.id, @max_distance)
-          eng_counter = count_distance(@test_ngrams, @eng_ngrams, @eng_sample.id, @max_distance)
-    
-          if pol_counter < eng_counter 
-            flash[:notice] = "pol: #{pol_counter} | eng: #{eng_counter} <br />Text in Polish"
+          if @eng_ngrams == []
+            flash[:error] = "Please, generate N-grams for English sample text"
+            redirect_to sample_ngrams_path(@eng_sample)
+          elsif @pol_ngrams == []
+            flash[:error] = "Please, generate N-grams for Polish sample text"
+            redirect_to sample_ngrams_path(@pol_sample)
           else
-            flash[:notice] = "pol: #{pol_counter} | eng: #{eng_counter} <br />Text not in Polish"
-          end
-          redirect_to(@sample) 
+            @max_distance = params[:max_distance].to_i
+          
+            pol_counter = count_distance(@test_ngrams, @pol_ngrams, @pol_sample.id, @max_distance)
+            eng_counter = count_distance(@test_ngrams, @eng_ngrams, @eng_sample.id, @max_distance)
+    
+            if pol_counter < eng_counter 
+              flash[:notice] = "pol: #{pol_counter} | eng: #{eng_counter} <br />Text in Polish"
+            else
+              flash[:notice] = "pol: #{pol_counter} | eng: #{eng_counter} <br />Text not in Polish"
+            end
+            redirect_to(@sample)
+          end 
         end
       }
       format.xml  { render :xml => @sample }
