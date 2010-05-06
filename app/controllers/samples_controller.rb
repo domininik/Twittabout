@@ -1,7 +1,6 @@
 class SamplesController < ApplicationController
   before_filter :require_user
-  # TODO MAX
-  MAX = 10000
+  before_filter :set_options, :only => [:new, :edit]
   
   # GET /samples
   # GET /samples.xml
@@ -29,7 +28,7 @@ class SamplesController < ApplicationController
   # GET /samples/new.xml
   def new
     @sample = Sample.new
-
+    
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @sample }
@@ -98,18 +97,19 @@ class SamplesController < ApplicationController
         if @test_ngrams == []
           flash[:error] = "You have to generate N-grams first"
           redirect_to(@sample)
-        elsif @eng_sample == []
-          flash[:error] = "There was no sample English text"
+        elsif @eng_sample == [] or @eng_sample.nil?
+          flash[:error] = "There is no sample English text"
           redirect_to(samples_path)
-        elsif @pol_sample == []
-          flash[:error] = "There was no sample Polish text"
-          redirect_to(sample_path)
+        elsif @pol_sample == [] or @pol_sample.nil?
+          flash[:error] = "There is no sample Polish text"
+          redirect_to(samples_path)
         else
           @eng_ngrams = @eng_sample.ngrams.find(:all, :order => "count DESC")
           @pol_ngrams = @pol_sample.ngrams.find(:all, :order => "count DESC")
+          @max_distance = params[:max_distance].to_i
           
-          pol_counter = count_distance(@test_ngrams, @pol_ngrams, @pol_sample.id)
-          eng_counter = count_distance(@test_ngrams, @eng_ngrams, @eng_sample.id)
+          pol_counter = count_distance(@test_ngrams, @pol_ngrams, @pol_sample.id, @max_distance)
+          eng_counter = count_distance(@test_ngrams, @eng_ngrams, @eng_sample.id, @max_distance)
     
           if pol_counter < eng_counter 
             flash[:notice] = "pol: #{pol_counter} | eng: #{eng_counter} <br />Text in Polish"
@@ -123,7 +123,7 @@ class SamplesController < ApplicationController
     end
   end
   
-  def count_distance(test_ngrams, lang_ngrams, lang_sample_id)
+  def count_distance(test_ngrams, lang_ngrams, lang_sample_id, max_distance)
     lang_counter = 0
     @test_ngrams.each do |ele|
       test_position = @test_ngrams.index(ele)
@@ -132,10 +132,16 @@ class SamplesController < ApplicationController
         lang_position = lang_ngrams.index(ngram)
         lang_counter += lang_position - test_position
       else
-        lang_counter += MAX
+        lang_counter += max_distance
       end
     end
     return lang_counter
+  end
+  
+  private
+  
+  def set_options
+    @languages = {"Polish" => "Polish", "English" => "English", "Unknown" => ""}
   end
   
 end

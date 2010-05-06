@@ -126,4 +126,15 @@ p.author {
 	margin-top: 68px;
 }
 
+p.notice {
+	color: green;
+	font-size: 18px;
+}
+
+p.error {
+	color: red;
+	font-size: 18px;
+}
+
+}
 }

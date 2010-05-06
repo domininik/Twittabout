@@ -26,11 +26,18 @@ class NgramsController < ApplicationController
       ngram.sample_id = @sample.id
       ngram.save
     end
-    # N=2, N=3
-    (1..2).each { |i| slice(table, 0, i) }
-            
+    
+    max = params[:max].to_i
+    pre= preprocess(@sample.body)
+
     respond_to do |format|
-      format.html {
+      format.html {    
+        if max > pre.length
+          flash[:error] = "N can't be bigger than preprocessed text"
+        else
+          max -= 1
+          (1..max).each { |i| slice(table, 0, i) }
+        end
         redirect_to sample_ngrams_path(@sample)
       }
     end

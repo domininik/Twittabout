@@ -5,7 +5,7 @@
 
   <p>
     <%= f.label :language %><br />
-    <%= f.text_field :language %>
+    <%= f.select(:language, @languages, :selected => '') %>
   </p>
   <p>
     <%= f.label :body %><br />
