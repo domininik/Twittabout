@@ -122,8 +122,10 @@ span.app_name {
 	padding: 5px;
 }
 
-p.author {
+span.author {
+	font-size: 20px;
 	margin-top: 68px;
+	float: left;
 }
 
 p.notice {
@@ -136,5 +138,17 @@ p.error {
 	font-size: 18px;
 }
 
+div#icon {
+	float: right;
 }
+
+div#icon a img {
+	border: none;
+}
+
+.border {
+	border: 1px solid #fff;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
 }
