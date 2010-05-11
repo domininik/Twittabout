@@ -1,4 +1,4 @@
-{Polski Twitter :: Twitter Po Polsku :: Twittabout}[http://polskitwitter.pl/]
+{Polski Twitter Twitter Po Polsku Twittabout}[http://polskitwitter.pl/]
 
 Twitter Web application | Master's Thesis | SEO Experiment
 
