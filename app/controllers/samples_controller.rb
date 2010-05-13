@@ -88,13 +88,14 @@ class SamplesController < ApplicationController
   
   def analyze
     @sample = Sample.find(params[:sample_id])
-    @test_ngrams = @sample.ngrams.find(:all, :order => "count DESC")
+    #@test_ngrams = @sample.ngrams.find(:all, :order => "count DESC")
+    @test_ngrams = @sample.ngram
     @eng_sample = Sample.find_by_language("English")
     @pol_sample = Sample.find_by_language("Polish")
     
     respond_to do |format|
       format.html {
-        if @test_ngrams == []
+        if @test_ngrams == [] or @test_ngrams.nil?
           flash[:error] = "You have to generate N-grams first"
           redirect_to(@sample)
         elsif @eng_sample == [] or @eng_sample.nil?
@@ -104,15 +105,15 @@ class SamplesController < ApplicationController
           flash[:error] = "There is no sample Polish text"
           redirect_to(samples_path)
         else
-          @eng_ngrams = @eng_sample.ngrams.find(:all, :order => "count DESC")
-          @pol_ngrams = @pol_sample.ngrams.find(:all, :order => "count DESC")
+          @eng_ngrams = @eng_sample.ngram
+          @pol_ngrams = @pol_sample.ngram
           
-          if @eng_ngrams == []
+          if @eng_ngrams == [] or @eng_ngrams.nil?
             flash[:error] = "Please, generate N-grams for English sample text"
-            redirect_to sample_ngrams_path(@eng_sample)
-          elsif @pol_ngrams == []
+            redirect_to sample_ngram_path(@eng_sample)
+          elsif @pol_ngrams == [] or @pol_ngrams.nil?
             flash[:error] = "Please, generate N-grams for Polish sample text"
-            redirect_to sample_ngrams_path(@pol_sample)
+            redirect_to sample_ngram_path(@pol_sample)
           else
             @max_distance = params[:max_distance].to_i
           
@@ -131,9 +132,11 @@ class SamplesController < ApplicationController
       format.xml  { render :xml => @sample }
     end
   end
-  
+
+=begin  
   def count_distance(test_ngrams, lang_ngrams, lang_sample_id, max_distance)
     lang_counter = 0
+    
     @test_ngrams.each do |ele|
       test_position = @test_ngrams.index(ele)
       ngram = Ngram.find(:first, :conditions => "body = '#{ele.body}' and sample_id = #{lang_sample_id}") 
@@ -146,6 +149,7 @@ class SamplesController < ApplicationController
     end
     return lang_counter
   end
+=end
   
   private
   
