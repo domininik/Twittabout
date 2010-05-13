@@ -1,3 +1,3 @@
 class Sample < ActiveRecord::Base
-  has_many :ngrams
+  has_one :ngram
 end

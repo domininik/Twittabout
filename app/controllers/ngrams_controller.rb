@@ -1,10 +1,8 @@
 class NgramsController < ApplicationController
   before_filter :get_sample
   
-  def index
-    preprocess(@sample.body)
-    #@ngrams = Ngram.find(:all, :conditions => "sample_id = 3", :order => "count DESC")
-    @ngrams = @sample.ngrams.find(:all, :order => "count DESC")
+  def show
+    @pre = preprocess(@sample.body).gsub('_', ' ')
 
     respond_to do |format|
       format.html
@@ -12,21 +10,23 @@ class NgramsController < ApplicationController
   end
 
   def generate_ngram
+    ngram = @sample.ngram
+    ngram.destroy if ngram
+    
     text = preprocess(@sample.body)
     table = text.split(//)
     
     # N=1
-    table.each do |ele|
-      ngram = Ngram.find_or_create_by_body_and_sample_id(ele, @sample.id)
-      if ngram.count.nil?
-        ngram.update_attribute(:count, 1)
-      else
-        ngram.count += 1
-      end
-      ngram.sample_id = @sample.id
-      ngram.save
-    end
+    @ngrams = {}
     
+    table.each do |ele|
+      if @ngrams[ele]
+        @ngrams[ele] += 1
+      else
+        @ngrams[ele] = 1
+      end
+    end
+          
     max = params[:max].to_i
     pre= preprocess(@sample.body)
 
@@ -37,22 +37,20 @@ class NgramsController < ApplicationController
         else
           max -= 1
           (1..max).each { |i| slice(table, 0, i) }
+          @ngrams = @ngrams.sort { |a,b| b[1] <=> a[1] }
+          foo = []
+          @ngrams.each do |ele|
+            foo << "#{ele[1]} - #{ele[0]};"
+          end
+          Ngram.create(:sample_id => @sample.id, :body => foo.to_s)
+          
+          flash[:notice] = "Generated #{@ngrams.size} N-grams for N = #{params[:max]}"
         end
-        redirect_to sample_ngrams_path(@sample)
+        redirect_to sample_ngram_path(@sample)
       }
     end
   end
-  
-  def destroy_all
-    Ngram.delete_all("sample_id = #{@sample.id}")
     
-    respond_to do |format|
-      format.html {
-        redirect_to sample_ngrams_path(@sample)
-      }
-    end
-  end
-  
   private
   
   def get_sample
@@ -62,14 +60,11 @@ class NgramsController < ApplicationController
   def slice(table, i, j) 
     until j == table.size
       ele = table[i..j].to_s
-      ngram = Ngram.find_or_create_by_body_and_sample_id(ele, @sample.id)
-      if ngram.count.nil?
-        ngram.update_attribute(:count, 1)
+      if @ngrams[ele]
+        @ngrams[ele] += 1
       else
-        ngram.count += 1
+        @ngrams[ele] = 1
       end
-      ngram.sample_id = @sample.id
-      ngram.save
       i += 1
       j += 1
     end

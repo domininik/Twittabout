@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :samples, :has_many => :ngrams
+  map.resources :samples, :has_one => :ngram
 
   map.resources :users
   map.resources :user_sessions

@@ -1,0 +1,23 @@
+<h1>N-grams for <%= @sample.language %> sample text</h1>
+
+<h2>Text:</h2>
+<p><%= @sample.body %></p>
+<p>Length: <%= @sample.body.length %></p>
+<h2>Preprocessed text:</h2> 
+<p><%= @pre %></p>
+<p>Length: <%= @pre.length %></p>
+<h2>N-grams</h2>
+<% if @sample.ngram %>
+  <p><%= format(@sample.ngram.body) %></p>
+<% end %>
+<hr />
+<p>
+  <% form_tag( :action => :generate_ngram) do %>
+    <%= hidden_field_tag "sample_id", @sample.id %>
+    max N = <%= text_field_tag "max", '3', :size => 3 %>
+    <br />
+    <%= submit_tag('generate') %>
+  <% end %>
+</p>
+<p><%= link_to 'Back', sample_path(@sample) %></p>
+
