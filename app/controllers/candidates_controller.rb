@@ -7,8 +7,8 @@ class CandidatesController < ApplicationController
   Morawiecki = {:name => "Kornel Morawiecki", :id => "138184708"}
   
   def index
-    #feed_all
-    #get_all_profile_pics
+    feed_all
+    get_all_profile_pics if Twittpic.all == []
     @twitts_5 = Twitt.find_all_by_username("Bronisław Komorowski", :order => "date DESC")
     @avatar_5 = Twittpic.find_by_user_id(Komorowski[:id])
     @twitts_1 = Twitt.find_all_by_username("Andrzej Olechowski", :order => "date DESC")
@@ -71,7 +71,6 @@ class CandidatesController < ApplicationController
       twittpic = Twittpic.new
       twittpic.user_id = id
       twittpic.url = ele.elements['profile_image_url'].text
-      debugger
       twittpic.save
     end
   end
