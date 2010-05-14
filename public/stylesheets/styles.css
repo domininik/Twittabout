@@ -196,3 +196,34 @@ p.time {
 	margin-top: 10px;
 	color: #666;
 }
+
+#fluid_footer {
+	width: 100%;
+	background-color: #333;
+	border-top: 1px solid #fff;
+	border-bottom: 1px solid #fff;
+	padding: 5px 0px;
+}
+
+#fluid_footer, #fluid_footer a {
+	color: #fff;
+	text-shadow: none;
+}
+
+#fluid_footer .content {
+	padding: 0px;
+}
+
+#footer_icon img {
+	border: none;
+	float: right;
+}
+
+.left {
+	float: left;
+}
+
+span#info {
+	margin-left: 200px;
+}
+}
