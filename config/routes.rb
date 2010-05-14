@@ -4,6 +4,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users
   map.resources :user_sessions
   map.resources :twitts
+  map.resources :candidates
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:

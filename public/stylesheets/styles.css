@@ -20,6 +20,16 @@ body, p, ol, ul, td {
 	padding: 20px;
 }
 
+#fluid_content {
+	width: 100%;
+	margin: 0 auto;
+}
+
+#fluid_content h1 {
+	font-size: 28px;
+	text-align: center;
+}
+
 #header {
 	width: 100%;
 	background-color: #333;
@@ -151,4 +161,38 @@ div#icon a img {
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
+}
+
+.candidate {
+	width: 15.5%;
+	float: left;
+	border-right: 2px solid #fff;
+	padding: 5px;
+}
+
+.candidate h2 {
+
+	text-align: center;
+	height: 40px;
+}
+
+.candidate img {
+  padding-left: 37%;
+}
+
+.last {
+	border-right: none;
+}
+
+.twitt {
+	padding: 10px;
+}
+.twitt p {
+	font-size: 13px;
+}
+
+p.time {
+	text-align: right;
+	margin-top: 10px;
+	color: #666;
 }
