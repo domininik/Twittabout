@@ -42,6 +42,7 @@ ActionController::Routing::Routes.draw do |map|
   map.login 'login', :controller => 'user_sessions', :action => 'new'  
   map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'
   map.feed 'feed', :controller => 'twitts', :action => 'feed'
+  map.update 'update', :controller => 'candidates', :action => 'get_all_profile_pics'
 
   # See how all your routes lay out with "rake routes"
 

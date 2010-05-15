@@ -1,36 +1,36 @@
 <h1>Kandydaci na prezydenta RP 2010 na Twitterze</h1>
 <div class="candidate">
-  <%= image_tag @avatar_1.url %>
+  <%= image_tag @avatar_1.url if @avatar_1 %>
   <h2><%= @twitts_1.first.username %></h2>
   <%= clear %>
   <%= render :partial => 'twitt', :collection => @twitts_1 %>
 </div>
 <div class="candidate">
-  <%= image_tag @avatar_2.url %>
+  <%= image_tag @avatar_2.url if @avatar_2 %>
   <h2><%= @twitts_2.first.username %></h2>
   <%= clear %>
   <%= render :partial => 'twitt', :collection => @twitts_2 %>
 </div>
 <div class="candidate">
-  <%= image_tag @avatar_3.url %>
+  <%= image_tag @avatar_3.url if @avatar_3 %>
   <h2><%= @twitts_3.first.username %></h2>
   <%= clear %>
   <%= render :partial => 'twitt', :collection => @twitts_3 %>
 </div>
 <div class="candidate">
-  <%= image_tag @avatar_4.url %>
+  <%= image_tag @avatar_4.url if @avatar_4 %>
   <h2><%= @twitts_4.first.username %></h2>
   <%= clear %>
   <%= render :partial => 'twitt', :collection => @twitts_4 %>
 </div>
 <div class="candidate">
-  <%= image_tag @avatar_5.url %>
+  <%= image_tag @avatar_5.url if @avatar_5 %>
   <h2><%= @twitts_5.first.username %></h2>
   <%= clear %>
   <%= render :partial => 'twitt', :collection => @twitts_5 %>
 </div>
 <div class="candidate last">
-  <%= image_tag @avatar_6.url %>
+  <%= image_tag @avatar_6.url if @avatar_6 %>
   <h2><%= @twitts_6.first.username %></h2>
   <%= clear %>
   <%= render :partial => 'twitt', :collection => @twitts_6 %>

@@ -3,24 +3,42 @@ class CandidatesController < ApplicationController
   Olechowski = {:name => "Andrzej Olechowski", :id => "77598783"}
   Napieralski = {:name => "Grzegorz Napieralski", :id => "129166436"}
   Jurek = {:name => "Marek Jurek", :id => "125404928"}
-  Mikke = {:name => "Janusz Korwin-Mikke", :id => "59603734"}
+  Mikke = {:name => "Janusz Korwin-Mikke", :id => "142395887"}
   Morawiecki = {:name => "Kornel Morawiecki", :id => "138184708"}
   
   def index
+    #cache = ActiveSupport::Cache::MemCacheStore.new
+    
     feed_all
     get_all_profile_pics if Twittpic.all == []
-    @twitts_5 = Twitt.find_all_by_username("Bronisław Komorowski", :order => "date DESC")
-    @avatar_5 = Twittpic.find_by_user_id(Komorowski[:id])
+
+    @twitts_4 = Twitt.find_all_by_username("Bronisław Komorowski", :order => "date DESC")
+    @avatar_4 = Twittpic.find_by_user_id(Komorowski[:id])
     @twitts_1 = Twitt.find_all_by_username("Andrzej Olechowski", :order => "date DESC")
     @avatar_1 = Twittpic.find_by_user_id(Olechowski[:id])
     @twitts_3 = Twitt.find_all_by_username("Grzegorz Napieralski", :order => "date DESC")
     @avatar_3 = Twittpic.find_by_user_id(Napieralski[:id])
     @twitts_2 = Twitt.find_all_by_username("Marek Jurek", :order => "date DESC")
     @avatar_2 = Twittpic.find_by_user_id(Jurek[:id])
-    @twitts_6 = Twitt.find_all_by_username("Janusz Korwin-Mikke", :order => "date DESC")
-    @avatar_6 = Twittpic.find_by_user_id(Mikke[:id])
-    @twitts_4 = Twitt.find_all_by_username("Kornel Morawiecki", :order => "date DESC")
-    @avatar_4 = Twittpic.find_by_user_id(Morawiecki[:id])
+    @twitts_5 = Twitt.find_all_by_username("Janusz Korwin-Mikke", :order => "date DESC")
+    @avatar_5 = Twittpic.find_by_user_id(Mikke[:id])
+    @twitts_6 = Twitt.find_all_by_username("Kornel Morawiecki", :order => "date DESC")
+    @avatar_6 = Twittpic.find_by_user_id(Morawiecki[:id])
+  end
+  
+  def get_all_profile_pics
+    get_profile_pic(Komorowski[:id])
+    get_profile_pic(Olechowski[:id])
+    get_profile_pic(Napieralski[:id])
+    get_profile_pic(Jurek[:id])
+    get_profile_pic(Mikke[:id])
+    get_profile_pic(Morawiecki[:id])
+
+    respond_to do |format|
+      format.html {
+        redirect_to candidates_path
+      }
+    end
   end
 
   private
@@ -52,15 +70,6 @@ class CandidatesController < ApplicationController
         twitt.save
       end
     end          
-  end
-  
-  def get_all_profile_pics
-    get_profile_pic(Komorowski[:id])
-    get_profile_pic(Olechowski[:id])
-    get_profile_pic(Napieralski[:id])
-    get_profile_pic(Jurek[:id])
-    get_profile_pic(Mikke[:id])
-    get_profile_pic(Morawiecki[:id])
   end
   
   def get_profile_pic(id)
