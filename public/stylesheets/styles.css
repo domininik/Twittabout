@@ -1,7 +1,11 @@
 body { 
 	color: #222;
 	text-shadow: 0px 1px 0px #fff;
-	background-color: #ccc;
+	background-color: #eee;
+}
+
+body#fluid {
+	background-color: #ddd;
 }
 
 body, p, ol, ul, td {
@@ -28,6 +32,7 @@ body, p, ol, ul, td {
 #fluid_content h1 {
 	font-size: 28px;
 	text-align: center;
+	height: 48px;
 }
 
 #header {
@@ -157,10 +162,13 @@ div#icon a img {
 }
 
 .border {
-	border: 1px solid #fff;
+	border: 2px solid #fff;
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
+	-webkit-box-shadow: 5px 5px 5px #666;
+	-moz-box-shadow: 5px 5px 5px #666;
+	box-shadow: 5px 5px 5px #666;
 }
 
 .candidate {
@@ -171,9 +179,8 @@ div#icon a img {
 }
 
 .candidate h2 {
-
 	text-align: center;
-	height: 40px;
+	height: 60px;
 }
 
 .candidate img {
@@ -189,6 +196,10 @@ div#icon a img {
 }
 .twitt p {
 	font-size: 13px;
+}
+
+.twitt a {
+	color: #555;
 }
 
 p.time {
@@ -225,5 +236,9 @@ p.time {
 
 span#info {
 	margin-left: 200px;
+}
+
+.grey {
+	background-color: #ccc;
 }
 }
