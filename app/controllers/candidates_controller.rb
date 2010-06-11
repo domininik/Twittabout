@@ -5,6 +5,7 @@ class CandidatesController < ApplicationController
   Jurek = {:name => "Marek Jurek", :id => "125404928"}
   Mikke = {:name => "Janusz Korwin-Mikke", :id => "142395887"}
   Morawiecki = {:name => "Kornel Morawiecki", :id => "138184708"}
+  Kaczynski = {:name => "Jarosław Kaczyński", :id => "141919655"}
   
   def index
     #cache = ActiveSupport::Cache::MemCacheStore.new
@@ -12,27 +13,37 @@ class CandidatesController < ApplicationController
     feed_all
     get_all_profile_pics if Twittpic.all == []
 
-    @twitts_4 = Twitt.find_all_by_username("Bronisław Komorowski", :order => "date DESC")
-    @avatar_4 = Twittpic.find_by_user_id(Komorowski[:id])
     @twitts_1 = Twitt.find_all_by_username("Andrzej Olechowski", :order => "date DESC")
     @avatar_1 = Twittpic.find_by_user_id(Olechowski[:id])
-    @twitts_3 = Twitt.find_all_by_username("Grzegorz Napieralski", :order => "date DESC")
-    @avatar_3 = Twittpic.find_by_user_id(Napieralski[:id])
-    @twitts_2 = Twitt.find_all_by_username("Marek Jurek", :order => "date DESC")
-    @avatar_2 = Twittpic.find_by_user_id(Jurek[:id])
+    
+    @twitts_2 = Twitt.find_all_by_username("Grzegorz Napieralski", :order => "date DESC")
+    @avatar_2 = Twittpic.find_by_user_id(Napieralski[:id])
+    
+    @twitts_3 = Twitt.find_all_by_username("Bronisław Komorowski", :order => "date DESC")
+    @avatar_3 = Twittpic.find_by_user_id(Komorowski[:id])
+    
+    @twitts_4 = Twitt.find_all_by_username("Jarosław Kaczyński", :order => "date DESC")
+    @avatar_4 = Twittpic.find_by_user_id(Kaczynski[:id])
+    
     @twitts_5 = Twitt.find_all_by_username("Janusz Korwin-Mikke", :order => "date DESC")
     @avatar_5 = Twittpic.find_by_user_id(Mikke[:id])
-    @twitts_6 = Twitt.find_all_by_username("Kornel Morawiecki", :order => "date DESC")
-    @avatar_6 = Twittpic.find_by_user_id(Morawiecki[:id])
+    
+    @twitts_6 = Twitt.find_all_by_username("Marek Jurek", :order => "date DESC")
+    @avatar_6 = Twittpic.find_by_user_id(Jurek[:id])
+    
+    @twitts_7 = Twitt.find_all_by_username("Kornel Morawiecki", :order => "date DESC")
+    @avatar_7 = Twittpic.find_by_user_id(Morawiecki[:id])
   end
   
   def get_all_profile_pics
+    Twittpic.destroy_all
     get_profile_pic(Komorowski[:id])
     get_profile_pic(Olechowski[:id])
     get_profile_pic(Napieralski[:id])
     get_profile_pic(Jurek[:id])
     get_profile_pic(Mikke[:id])
     get_profile_pic(Morawiecki[:id])
+    get_profile_pic(Kaczynski[:id])
 
     respond_to do |format|
       format.html {
@@ -50,6 +61,7 @@ class CandidatesController < ApplicationController
     feed(Jurek[:id], Jurek[:name])
     feed(Mikke[:id], Mikke[:name])
     feed(Morawiecki[:id], Morawiecki[:name])
+    feed(Kaczynski[:id], Kaczynski[:name])
   end
   
   def feed(id, name)

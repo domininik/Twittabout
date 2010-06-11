@@ -29,11 +29,17 @@
   <%= clear %>
   <%= render :partial => 'twitt', :collection => @twitts_5 %>
 </div>
-<div class="candidate last">
+<div class="candidate">
   <%= image_tag @avatar_6.url if @avatar_6 %>
   <h2><%= @twitts_6.first.username if @twitts_6 !=[] %></h2>
   <%= clear %>
   <%= render :partial => 'twitt', :collection => @twitts_6 %>
+</div>
+<div class="candidate last">
+  <%= image_tag @avatar_7.url if @avatar_7 %>
+  <h2><%= @twitts_7.first.username if @twitts_7 !=[] %></h2>
+  <%= clear %>
+  <%= render :partial => 'twitt', :collection => @twitts_7 %>
 </div>
 <%= clear %>
 
