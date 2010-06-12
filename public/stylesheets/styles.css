@@ -188,6 +188,10 @@ div#icon a img {
   padding-left: 37%;
 }
 
+.candidate form input {
+	float: right;
+}
+
 .last {
 	border-right: none;
 }
@@ -234,6 +238,10 @@ p.time {
 
 .left {
 	float: left;
+}
+
+.center {
+	text-align: center;
 }
 
 span#info {
