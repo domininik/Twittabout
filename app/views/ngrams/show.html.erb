@@ -6,7 +6,7 @@
 <h2>Preprocessed text:</h2> 
 <p><%= @pre %></p>
 <p>Length: <%= @pre.length %></p>
-<h2>N-grams</h2>
+<h2><%= ngrams_size(@sample) %> N-grams:</h2>
 <% if @sample.ngram %>
   <p><%= format(@sample.ngram.body) %></p>
 <% end %>

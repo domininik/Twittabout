@@ -10,12 +10,22 @@
 <%= link_to 'Edit', edit_sample_path(@sample) %> |
 <%= link_to 'Back', samples_path %>
 <hr />
+<h2>I. Distance method</h2>
 <p>
-  <% form_tag( :action => :analyze) do %>
+  <% form_tag( :action => :analyze_a) do %>
     <%= hidden_field_tag "sample_id", @sample.id %>
     Max distance: <%= text_field_tag "max_distance", "10000" %>
     <br />
     <%= submit_tag('Analyze') %>
   <% end %>
 </p>
+<hr />
+<h2>II. Density method</h2>
+<p>
+  <% form_tag( :action => :analyze_b) do %>
+    <%= hidden_field_tag "sample_id", @sample.id %>
+    <%= submit_tag('Analyze') %>
+  <% end %>
+</p>
+
 <p><%= link_to 'Back', samples_path %></p>

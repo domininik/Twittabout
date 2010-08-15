@@ -86,7 +86,7 @@ class SamplesController < ApplicationController
     end
   end
   
-  def analyze
+  def analyze_a
     @sample = Sample.find(params[:sample_id])
     @test_ngrams = @sample.ngram
     @eng_sample = Sample.find_by_language("English")
@@ -114,8 +114,8 @@ class SamplesController < ApplicationController
       else
         @max_distance = params[:max_distance].to_i
       
-        pol_counter = count_distance(@test_ngrams, @pol_ngrams, @max_distance)
-        eng_counter = count_distance(@test_ngrams, @eng_ngrams, @max_distance)
+        pol_counter = measure_distance(@test_ngrams, @pol_ngrams, @max_distance)
+        eng_counter = measure_distance(@test_ngrams, @eng_ngrams, @max_distance)
 
         if pol_counter < eng_counter 
           flash[:notice] = "pol: #{pol_counter} | eng: #{eng_counter} <br />Text in Polish"
@@ -127,8 +127,42 @@ class SamplesController < ApplicationController
        
     end
   end
+  
+  def analyze_b
+    @sample = Sample.find(params[:sample_id])
+    @test_ngrams = @sample.ngram
+    @pol_sample = Sample.find_by_language("Polish")
+    
+    if @test_ngrams == [] or @test_ngrams.nil?
+      flash[:error] = "You have to generate N-grams first"
+      redirect_to(@sample)
+    elsif @pol_sample == [] or @pol_sample.nil?
+      flash[:error] = "There is no sample Polish text"
+      redirect_to(samples_path)
+    else
+      @pol_ngrams = @pol_sample.ngram
+      
+      if @pol_ngrams == [] or @pol_ngrams.nil?
+        flash[:error] = "Please, generate N-grams for Polish sample text"
+        redirect_to sample_ngram_path(@pol_sample)
+      else
+        density = measure_density(@test_ngrams, @pol_ngrams)
 
-  def count_distance(test_ngrams, lang_ngrams, max_distance)
+        flash[:notice] = "Density: #{density}"
+
+        redirect_to(@sample)
+      end
+       
+    end
+  end
+  
+  private
+  
+  def set_options
+    @languages = {"Polish" => "Polish", "English" => "English", "Unknown" => ""}
+  end
+  
+  def measure_distance(test_ngrams, lang_ngrams, max_distance)
     lang_counter = 0
     
     # make an array
@@ -148,10 +182,19 @@ class SamplesController < ApplicationController
     return lang_counter
   end
   
-  private
-  
-  def set_options
-    @languages = {"Polish" => "Polish", "English" => "English", "Unknown" => ""}
+  def measure_density(test_ngrams, lang_ngrams)
+    test_ngrams = test_ngrams.body.split(/[\d]* - /)
+    lang_ngrams = lang_ngrams.body.split(/[\d]* - /)
+    
+    count = 0
+    
+    test_ngrams.each do |ele|
+      count += 1 if lang_ngrams.include?(ele)
+    end
+    
+    total = test_ngrams.size
+    
+    density = count.to_f / total.to_f
   end
   
 end
