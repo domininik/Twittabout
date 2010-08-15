@@ -8,7 +8,7 @@ class TwittsController < ApplicationController
 
   def feed
     @twitts = []
-    url = 'http://api.twitter.com/version/statuses/public_timeline.xml'
+    url = 'http://api.twitter.com/statuses/public_timeline.xml'
     xml_data = Net::HTTP.get_response(URI.parse(url)).body
     doc = REXML::Document.new(xml_data)
     doc.elements.each('statuses/status') do |ele|
