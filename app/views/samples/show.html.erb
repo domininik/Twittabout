@@ -10,7 +10,6 @@
 <%= link_to 'Edit', edit_sample_path(@sample) %> |
 <%= link_to 'Back', samples_path %>
 <hr />
-<!--
 <p>
   <% form_tag( :action => :analyze) do %>
     <%= hidden_field_tag "sample_id", @sample.id %>
@@ -19,5 +18,4 @@
     <%= submit_tag('Analyze') %>
   <% end %>
 </p>
--->
 <p><%= link_to 'Back', samples_path %></p>

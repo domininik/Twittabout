@@ -28,27 +28,22 @@ class NgramsController < ApplicationController
     end
           
     max = params[:max].to_i
-    pre= preprocess(@sample.body)
-
-    respond_to do |format|
-      format.html {    
-        if max > pre.length
-          flash[:error] = "N can't be bigger than preprocessed text"
-        else
-          max -= 1
-          (1..max).each { |i| slice(table, 0, i) }
-          @ngrams = @ngrams.sort { |a,b| b[1] <=> a[1] }
-          foo = []
-          @ngrams.each do |ele|
-            foo << "#{ele[1]} - #{ele[0]};"
-          end
-          Ngram.create(:sample_id => @sample.id, :body => foo.to_s)
-          
-          flash[:notice] = "Generated #{@ngrams.size} N-grams for N = #{params[:max]}"
-        end
-        redirect_to sample_ngram_path(@sample)
-      }
+ 
+    if max > text.length
+      flash[:error] = "N can't be bigger than preprocessed text"
+    else
+      max -= 1
+      (1..max).each { |i| slice(table, 0, i) }
+      @ngrams = @ngrams.sort { |a,b| b[1] <=> a[1] }
+      foo = []
+      @ngrams.each do |ele|
+        foo << "#{ele[1]} - #{ele[0]};"
+      end
+      Ngram.create(:sample_id => @sample.id, :body => foo.to_s)
+      
+      flash[:notice] = "Generated #{@ngrams.size} N-grams for N = #{params[:max]}"
     end
+    redirect_to sample_ngram_path(@sample)
   end
     
   private
