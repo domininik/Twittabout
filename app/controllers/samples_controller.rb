@@ -117,7 +117,9 @@ class SamplesController < ApplicationController
         pol_counter = measure_distance(@test_ngrams, @pol_ngrams, @max_distance)
         eng_counter = measure_distance(@test_ngrams, @eng_ngrams, @max_distance)
 
-        if pol_counter < eng_counter 
+        if pol_counter == nil or eng_counter == nil
+          flash[:notice] = "Text not in Polish"
+        elsif pol_counter < eng_counter 
           flash[:notice] = "pol: #{pol_counter} | eng: #{eng_counter} <br />Text in Polish"
         else
           flash[:notice] = "pol: #{pol_counter} | eng: #{eng_counter} <br />Text not in Polish"
@@ -164,19 +166,22 @@ class SamplesController < ApplicationController
   
   def measure_distance(test_ngrams, lang_ngrams, max_distance)
     lang_counter = 0
-    
     # make an array
     test_ngrams = test_ngrams.body.split(/[\d]* - /)
-    lang_ngrams = lang_ngrams.body.split(/[\d]* - /)
+    if test_ngrams == []
+      lang_counter = nil
+    else
+      lang_ngrams = lang_ngrams.body.split(/[\d]* - /)
         
-    test_ngrams.each do |ele|
-      test_position = test_ngrams.index(ele)
-      lang_position = lang_ngrams.index(ele)
+      test_ngrams.each do |ele|
+        test_position = test_ngrams.index(ele)
+        lang_position = lang_ngrams.index(ele)
             
-      if lang_position
-        lang_counter += lang_position - test_position
-      else
-        lang_counter += max_distance
+        if lang_position
+          lang_counter += lang_position - test_position
+        else
+          lang_counter += max_distance
+        end
       end
     end
     return lang_counter
@@ -184,17 +189,21 @@ class SamplesController < ApplicationController
   
   def measure_density(test_ngrams, lang_ngrams)
     test_ngrams = test_ngrams.body.split(/[\d]* - /)
-    lang_ngrams = lang_ngrams.body.split(/[\d]* - /)
     
-    count = 0
+    if test_ngrams == []
+      density = 0
+    else
+      lang_ngrams = lang_ngrams.body.split(/[\d]* - /)
     
-    test_ngrams.each do |ele|
-      count += 1 if lang_ngrams.include?(ele)
+      count = 0
+    
+      test_ngrams.each do |ele|
+        count += 1 if lang_ngrams.include?(ele)
+      end
+    
+      total = test_ngrams.size
+      density = count.to_f / total.to_f
     end
-    
-    total = test_ngrams.size
-    
-    density = count.to_f / total.to_f
   end
   
 end

@@ -12,36 +12,40 @@ class NgramsController < ApplicationController
   def generate_ngram
     ngram = @sample.ngram
     ngram.destroy if ngram
-    
     text = preprocess(@sample.body)
-    table = text.split(//)
-    
-    # N=1
-    @ngrams = {}
-    
-    table.each do |ele|
-      if @ngrams[ele]
-        @ngrams[ele] += 1
-      else
-        @ngrams[ele] = 1
-      end
-    end
-          
-    max = params[:max].to_i
- 
-    if max > text.length
-      flash[:error] = "N can't be bigger than preprocessed text"
+    if text = ""
+      Ngram.create(:sample_id => @sample.id, :body => "")
+      flash[:notice] = "All characters in the text are non-latin!"
     else
-      max -= 1
-      (1..max).each { |i| slice(table, 0, i) }
-      @ngrams = @ngrams.sort { |a,b| b[1] <=> a[1] }
-      foo = []
-      @ngrams.each do |ele|
-        foo << "#{ele[1]} - #{ele[0]};"
+      table = text.split(//)
+    
+      # N=1
+      @ngrams = {}
+    
+      table.each do |ele|
+        if @ngrams[ele]
+          @ngrams[ele] += 1
+        else
+          @ngrams[ele] = 1
+        end
       end
-      Ngram.create(:sample_id => @sample.id, :body => foo.to_s)
+          
+      max = params[:max].to_i
+ 
+      if max > text.length
+        flash[:error] = "N can't be bigger than preprocessed text"
+      else
+        max -= 1
+        (1..max).each { |i| slice(table, 0, i) }
+        @ngrams = @ngrams.sort { |a,b| b[1] <=> a[1] }
+        foo = []
+        @ngrams.each do |ele|
+          foo << "#{ele[1]} - #{ele[0]};"
+        end
+        Ngram.create(:sample_id => @sample.id, :body => foo.to_s)
       
-      flash[:notice] = "Generated #{@ngrams.size} N-grams for N = #{params[:max]}"
+        flash[:notice] = "Generated #{@ngrams.size} N-grams for N = #{params[:max]}"
+      end
     end
     redirect_to sample_ngram_path(@sample)
   end
@@ -68,7 +72,8 @@ class NgramsController < ApplicationController
   def preprocess(text)
     text = text.lstrip
     text = text.downcase
-    text = text.delete "^[a-z ąęóśźćżłń]"
+    text = text.delete "^[a-z]"
+    text = text.delete "^[ąęóśźćżłń]"
     text = text.gsub(' ','_')
     @pre = text
   end
