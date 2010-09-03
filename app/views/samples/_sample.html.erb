@@ -2,6 +2,9 @@
   <% if sample.language != '' %>	  
     <p><b>Language:</b> <%=h sample.language %></p>
   <% end %>
+  <% if sample.category != 'unknown' and sample.category != nil %>	  
+    <p><b>Category:</b> <%=h sample.category %></p>
+  <% end %>
   <p><b>Text:</b> <%=h sample.body %></p>
   <p><b>Length:</b> <%= sample.body.length %></p>
   <p>

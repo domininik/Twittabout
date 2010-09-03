@@ -5,7 +5,13 @@ class SamplesController < ApplicationController
   # GET /samples
   # GET /samples.xml
   def index
-    @samples = Sample.find(:all, :order => "language DESC")
+    if lang = params[:lang]
+      @samples = Sample.find(:all, :conditions => "language = '#{lang}'")
+    elsif cat = params[:cat]
+      @samples = Sample.find(:all, :conditions => "category = '#{cat}'")
+    else
+      @samples = Sample.find(:all, :order => "language DESC")
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -161,7 +167,8 @@ class SamplesController < ApplicationController
   private
   
   def set_options
-    @languages = {"Polish" => "Polish", "English" => "English", "Unknown" => ""}
+    @languages = {"Polish" => "Polish", "English" => "English", "unknown" => ""}
+    @categories = %w{design music sport politics unknown}
   end
   
   def measure_distance(test_ngrams, lang_ngrams, max_distance)

@@ -8,6 +8,10 @@
     <%= f.select(:language, @languages) %>
   </p>
   <p>
+    <%= f.label :category %><br />
+    <%= f.select(:category, @categories, :selected => 'unknown') %>
+  </p>
+  <p>
     <%= f.label :body %><br />
     <%= f.text_area :body %>
   </p>
