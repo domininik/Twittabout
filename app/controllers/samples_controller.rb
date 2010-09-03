@@ -164,6 +164,41 @@ class SamplesController < ApplicationController
     end
   end
   
+  def analyze_d
+    @sample = Sample.find(params[:sample_id])
+    @test_ngrams = @sample.ngram
+    @music_sample = Sample.find_by_category("Music")
+    #@design_sample = Sample.find_by_category("Design")
+    @sport_sample = Sample.find_by_category("Sport")
+    #@politics_sample = Sample.find_by_category("Politics")
+    
+    if @test_ngrams == [] or @test_ngrams.nil?
+      flash[:error] = "You have to generate N-grams first"
+      redirect_to(@sample)
+    elsif @sport_sample.nil? or @music_sample.nil? #or @politics_sample.nil? or @design_sample.nil?
+      flash[:error] = "You have to generate samples for all categories first!"
+      redirect_to(samples_path)
+    else
+      @music_ngrams = @music_sample.ngram
+      #@design_ngrams = @design_sample.ngram
+      @sport_ngrams = @sport_sample.ngram
+      #@politics_ngrams = @politics_sample.ngram
+      
+      if false #@pol_ngrams == [] or @pol_ngrams.nil?
+        flash[:error] = "Please, generate N-grams for Polish sample text"
+        redirect_to sample_ngram_path(@pol_sample)
+      else
+        density1 = measure_density(@test_ngrams, @music_ngrams)
+        density2 = measure_density(@test_ngrams, @sport_ngrams)
+
+        flash[:notice] = "Density for music: #{density1}, density for sport: #{density2}"
+
+        redirect_to(@sample)
+      end
+       
+    end
+  end
+  
   private
   
   def set_options

@@ -13,7 +13,7 @@ class NgramsController < ApplicationController
     ngram = @sample.ngram
     ngram.destroy if ngram
     text = preprocess(@sample.body)
-    if text = ""
+    if text == ""
       Ngram.create(:sample_id => @sample.id, :body => "")
       flash[:notice] = "All characters in the text are non-latin!"
     else
@@ -72,8 +72,7 @@ class NgramsController < ApplicationController
   def preprocess(text)
     text = text.lstrip
     text = text.downcase
-    text = text.delete "^[a-z]"
-    text = text.delete "^[ąęóśźćżłń]"
+    text = text.delete "^[a-z][ąęóśźćżłń]"
     text = text.gsub(' ','_')
     @pre = text
   end
