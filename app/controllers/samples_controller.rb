@@ -2,6 +2,9 @@ class SamplesController < ApplicationController
   before_filter :require_user
   before_filter :set_options, :only => [:new, :edit]
   
+  
+  Density = 0.6
+  
   # GET /samples
   # GET /samples.xml
   def index
@@ -191,9 +194,12 @@ class SamplesController < ApplicationController
         redirect_to sample_ngram_path(@pol_sample)
       else
         density = measure_density(@test_ngrams, @pol_ngrams)
-
-        flash[:notice] = "Density: #{density}"
-
+        
+        if density > Density 
+          flash[:notice] = "Density: #{density} | Text in Polish"
+        else
+          flash[:notice] = "Density: #{density} | Text not in Polish"
+        end
         redirect_to(@sample)
       end
        
