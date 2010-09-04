@@ -42,8 +42,8 @@ class NgramsController < ApplicationController
         @ngrams.each do |ele|
           foo << "#{ele[1]} - #{ele[0]};"
         end
+        
         Ngram.create(:sample_id => @sample.id, :body => foo.to_s)
-      
         flash[:notice] = "Generated #{@ngrams.size} N-grams for N = #{params[:max]}"
       end
     end
@@ -72,7 +72,7 @@ class NgramsController < ApplicationController
   def preprocess(text)
     text = text.lstrip
     text = text.downcase
-    text = text.delete "^[a-z][ąęóśźćżłń]"
+    text = text.gsub(/[^a-ząęóśźćżłń]/,'')
     text = text.gsub(' ','_')
     @pre = text
   end

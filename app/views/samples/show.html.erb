@@ -3,10 +3,9 @@
   <h1>Sample text for <%= @sample.language %> language</h1>
 <% end %>
 
-<h2>Text:</h2>
+<h3>Length: <%= @sample.body.length %></h3>
 <p><%=h @sample.body %></p>
 <hr />
-<p>Length: <%= @sample.body.length %></p>
 <%= link_to 'N-grams', sample_ngram_path(@sample) %> |
 <%= link_to 'Edit', edit_sample_path(@sample) %> |
 <%= link_to 'Back', samples_path %>

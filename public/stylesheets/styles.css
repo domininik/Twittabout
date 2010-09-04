@@ -261,4 +261,11 @@ span#info {
 .grey {
 	background-color: #ccc;
 }
+
+textarea {
+  width: 100%;
 }
+
+
+
+
