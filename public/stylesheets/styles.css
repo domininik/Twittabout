@@ -150,11 +150,13 @@ span.author {
 p.notice {
 	color: green;
 	font-size: 18px;
+	text-align: center;
 }
 
 p.error {
 	color: red;
 	font-size: 18px;
+	text-align: center;
 }
 
 div#icon {
