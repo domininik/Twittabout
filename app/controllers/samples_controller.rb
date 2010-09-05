@@ -134,8 +134,7 @@ class SamplesController < ApplicationController
           flash[:notice] = "pol: #{pol_counter} | eng: #{eng_counter} <br />Text not in Polish"
         end
         redirect_to(@sample)
-      end
-       
+      end     
     end
   end
   
@@ -170,8 +169,7 @@ class SamplesController < ApplicationController
 
         flash[:notice] = "sport: #{sport_counter}, music: #{music_counter}"
         redirect_to(@sample)
-      end
-       
+      end    
     end
   end
   
@@ -201,8 +199,7 @@ class SamplesController < ApplicationController
           flash[:notice] = "Density: #{density} | Text not in Polish"
         end
         redirect_to(@sample)
-      end
-       
+      end     
     end
   end
   
@@ -236,9 +233,31 @@ class SamplesController < ApplicationController
         flash[:notice] = "Density for music: #{density1}, density for sport: #{density2}"
 
         redirect_to(@sample)
-      end
-       
+      end  
     end
+  end
+  
+  def analyze_e
+    @sample = Sample.find(params[:sample_id])
+    tab = @sample.body.split
+    total = {}
+    
+    tab.each do |word| 
+      word.gsub!(/[^a-ząęóśźćżłń]/,'')
+      Rule.all.each do |rule|
+        cat = rule.word
+        total[cat] = 0 if total[cat].nil?
+        total[cat] += rule.word_weight if rule.word.include? word
+        total[cat] += rule.synonymy_weight if rule.synonymy.include? word
+        total[cat] += rule.is_a_weight if rule.is_a.include? word
+        total[cat] += rule.similar_to_weight if rule.similar_to.include? word
+        total[cat] += rule.is_a_part_of_weight if rule.is_a_part_of.include? word
+        total[cat] += rule.consists_of_weight if rule.consists_of.include? word
+        total[cat] += rule.destination_weight if rule.destination.include? word
+      end
+    end
+    flash[:notice] = "Total for music: #{total['muzyka']} | sport: #{total['sport']}" 
+    redirect_to(@sample)
   end
   
   private

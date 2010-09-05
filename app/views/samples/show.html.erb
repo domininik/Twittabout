@@ -45,4 +45,10 @@
     <%= submit_tag('Analyze') %>
   <% end %>
 </p>
-<hr />
+<h3>III. Rule method</h3>
+<p>
+  <% form_tag( :action => :analyze_e) do %>
+    <%= hidden_field_tag "sample_id", @sample.id %>
+    <%= submit_tag('Analyze') %>
+  <% end %>
+</p>

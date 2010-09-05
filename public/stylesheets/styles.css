@@ -242,30 +242,14 @@ p.time {
 	float: right;
 }
 
-.left {
-	float: left;
-}
+.left { float: left; }
+.right { float: right; }
+.center { text-align: center; }
 
-.right {
-  float: right;
-}
+span#info { margin-left: 45px; }
 
-.center {
-	text-align: center;
-}
+.grey { background-color: #ccc; }
 
-span#info {
-	margin-left: 45px;
-}
+textarea { width: 100%; }
 
-.grey {
-	background-color: #ccc;
-}
-
-textarea {
-  width: 100%;
-}
-
-
-
-
+form#new_rule textarea, form#edit_rule textarea { height: 75px;}

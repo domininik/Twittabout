@@ -29,6 +29,11 @@
   <b><%=h @rule.destination_weight %> - Destination:</b>
   <%=h @rule.destination %>
 </p>
+<hr />
+<p>
+	<b>Total:</b>
+	<%= @rule.total_weight %>
+</p>
 
 <%= link_to 'Edit', edit_rule_path %> |
 <%= link_to 'Back', rules_path %>
