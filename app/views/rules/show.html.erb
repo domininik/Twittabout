@@ -1,4 +1,9 @@
-<h2><%=h @rule.word_weight %> - Word: <%=h @rule.word %></h2>
+<h2><%= @rule.category %></h2>
+
+<p>
+  <b><%=h @rule.word_weight %> - Word:</b> 
+  <%=h @rule.word %>
+</p>
 
 <p>
   <b><%=h @rule.synonymy_weight %> - Synonymy:</b>

@@ -239,13 +239,14 @@ class SamplesController < ApplicationController
   
   def analyze_e
     @sample = Sample.find(params[:sample_id])
-    tab = @sample.body.split
+    tab = @sample.body.downcase.split
+    tab.delete_if {|ele| ele.length == 1 }
     total = {}
     
     tab.each do |word| 
       word.gsub!(/[^a-ząęóśźćżłń]/,'')
       Rule.all.each do |rule|
-        cat = rule.word
+        cat = rule.category
         total[cat] = 0 if total[cat].nil?
         total[cat] += rule.word_weight if rule.word.include? word
         total[cat] += rule.synonymy_weight if rule.synonymy.include? word
