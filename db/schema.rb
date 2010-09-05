@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100903214334) do
+ActiveRecord::Schema.define(:version => 20100905133526) do
 
   create_table "items", :force => true do |t|
     t.datetime "created_at"
@@ -17,10 +17,29 @@ ActiveRecord::Schema.define(:version => 20100903214334) do
   end
 
   create_table "ngrams", :force => true do |t|
-    t.text     "body"
+    t.text     "body",       :limit => 16777215
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "sample_id"
+  end
+
+  create_table "rules", :force => true do |t|
+    t.string   "word"
+    t.integer  "word_weight"
+    t.text     "synonymy"
+    t.integer  "synonymy_weight"
+    t.text     "is_a"
+    t.integer  "is_a_weight"
+    t.text     "similar_to"
+    t.integer  "similar_to_weight"
+    t.text     "is_a_part_of"
+    t.integer  "is_a_part_of_weight"
+    t.text     "consists_of"
+    t.integer  "consists_of_weight"
+    t.text     "destination"
+    t.integer  "destination_weight"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "samples", :force => true do |t|

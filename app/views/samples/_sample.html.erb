@@ -5,8 +5,7 @@
   <% if sample.category != 'unknown' and sample.category != nil %>	  
     <p><b>Category:</b> <%=h sample.category %></p>
   <% end %>
-  <p><b>Length:</b> <%= sample.body.length %></p>
-  <p><b>Text:</b> <%=h truncate(sample.body, :length => 250, :omnision => "...") %></p>
+  <p><%=h truncate(sample.body, :length => 250, :omnision => "...") %></p>
   <p>
     <%= link_to 'N-grams', sample_ngram_path(sample) %> |
     <%= link_to 'Show', sample %> |

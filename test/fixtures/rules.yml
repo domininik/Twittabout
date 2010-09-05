@@ -1,0 +1,33 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  word: MyString
+  word_weight: 1
+  synonymy: MyText
+  synonymy_weight: 1
+  is_a: MyText
+  is_a_weight: 1
+  similar_to: MyText
+  similar_to_weight: 1
+  is_a_part_of: MyText
+  is_a_part_of_weight: 1
+  consists_of: MyText
+  consists_of_weight: 1
+  destination: MyText
+  destination_weight: 1
+
+two:
+  word: MyString
+  word_weight: 1
+  synonymy: MyText
+  synonymy_weight: 1
+  is_a: MyText
+  is_a_weight: 1
+  similar_to: MyText
+  similar_to_weight: 1
+  is_a_part_of: MyText
+  is_a_part_of_weight: 1
+  consists_of: MyText
+  consists_of_weight: 1
+  destination: MyText
+  destination_weight: 1

@@ -1,0 +1,9 @@
+<div class="rule">
+  <p><b><%=h rule.word %></b></p>
+  <p>
+    <%= link_to 'Show', rule_path(rule.id) %> |
+	  <%= link_to 'Edit', edit_rule_path(rule.id) %> |
+	  <%= link_to 'Destroy', rule_path(rule.id), :confirm => 'Are you sure?', :method => :delete %>
+	</p>
+</div>
+<hr />

@@ -1,0 +1,34 @@
+<h2><%=h @rule.word_weight %> - Word: <%=h @rule.word %></h2>
+
+<p>
+  <b><%=h @rule.synonymy_weight %> - Synonymy:</b>
+  <%=h @rule.synonymy %>
+</p>
+
+<p>
+  <b><%=h @rule.is_a_weight %> - Is a:</b>
+  <%=h @rule.is_a %>
+</p>
+
+<p>
+  <b><%=h @rule.similar_to_weight %> - Similar to:</b>
+  <%=h @rule.similar_to %>
+</p>
+
+<p>
+  <b><%=h @rule.is_a_part_of_weight %> - Is a part of:</b>
+  <%=h @rule.is_a_part_of %>
+</p>
+
+<p>
+  <b><%=h @rule.consists_of_weight %> - Consists of:</b>
+  <%=h @rule.consists_of %>
+</p>
+
+<p>
+  <b><%=h @rule.destination_weight %> - Destination:</b>
+  <%=h @rule.destination %>
+</p>
+
+<%= link_to 'Edit', edit_rule_path %> |
+<%= link_to 'Back', rules_path %>
