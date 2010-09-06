@@ -3,7 +3,7 @@ class SamplesController < ApplicationController
   before_filter :set_options, :only => [:new, :edit]
   
   
-  Density = 0.6
+  Density = 0.92
   
   # GET /samples
   # GET /samples.xml
@@ -95,6 +95,7 @@ class SamplesController < ApplicationController
     end
   end
   
+  # Language Distance Method
   def analyze_a
     @sample = Sample.find(params[:sample_id])
     @test_ngrams = @sample.ngram
@@ -138,6 +139,7 @@ class SamplesController < ApplicationController
     end
   end
   
+  # Category Distance Method
   def analyze_c
     @sample = Sample.find(params[:sample_id])
     @test_ngrams = @sample.ngram
@@ -173,6 +175,7 @@ class SamplesController < ApplicationController
     end
   end
   
+  # Language Density Method
   def analyze_b
     @sample = Sample.find(params[:sample_id])
     @test_ngrams = @sample.ngram
@@ -191,7 +194,10 @@ class SamplesController < ApplicationController
         flash[:error] = "Please, generate N-grams for Polish sample text"
         redirect_to sample_ngram_path(@pol_sample)
       else
-        density = measure_density(@test_ngrams, @pol_ngrams)
+        test_ngrams = @test_ngrams.body.split(/[\d]* - /)
+        lang_ngrams = @pol_ngrams.body.split(/[\d]* - /)
+        
+        density = measure_density(test_ngrams, lang_ngrams)
         
         if density > Density 
           flash[:notice] = "Density: #{density} | Text in Polish"
@@ -203,6 +209,7 @@ class SamplesController < ApplicationController
     end
   end
   
+  # Category Density Method
   def analyze_d
     @sample = Sample.find(params[:sample_id])
     @test_ngrams = @sample.ngram
@@ -227,8 +234,12 @@ class SamplesController < ApplicationController
         flash[:error] = "Please, generate all N-grams first"
         #redirect_to sample_ngram_path(@pol_sample)
       else
-        density1 = measure_density(@test_ngrams, @music_ngrams)
-        density2 = measure_density(@test_ngrams, @sport_ngrams)
+        test_ngrams = @test_ngrams.body.split(/[\d]* - /)
+        music_ngrams = @music_ngrams.body.split(/[\d]* - /)
+        sport_ngrams = @sport_ngrams.body.split(/[\d]* - /)
+        
+        density1 = measure_density(test_ngrams, music_ngrams)
+        density2 = measure_density(test_ngrams, sport_ngrams)
 
         flash[:notice] = "Density for music: #{density1}, density for sport: #{density2}"
 
@@ -237,6 +248,7 @@ class SamplesController < ApplicationController
     end
   end
   
+  # Category Rule Method
   def analyze_e
     @sample = Sample.find(params[:sample_id])
     tab = @sample.body.downcase.split
@@ -269,14 +281,15 @@ class SamplesController < ApplicationController
   end
   
   def measure_distance(test_ngrams, lang_ngrams, max_distance)
-    lang_counter = 0
-    # make an array
     test_ngrams = test_ngrams.body.split(/[\d]* - /)
+    
     if test_ngrams == []
       lang_counter = nil
     else
       lang_ngrams = lang_ngrams.body.split(/[\d]* - /)
         
+      lang_counter = 0
+      
       test_ngrams.each do |ele|
         test_position = test_ngrams.index(ele)
         lang_position = lang_ngrams.index(ele)
@@ -289,25 +302,6 @@ class SamplesController < ApplicationController
       end
     end
     return lang_counter
-  end
-  
-  def measure_density(test_ngrams, lang_ngrams)
-    test_ngrams = test_ngrams.body.split(/[\d]* - /)
-    
-    if test_ngrams == []
-      density = 0
-    else
-      lang_ngrams = lang_ngrams.body.split(/[\d]* - /)
-    
-      count = 0
-    
-      test_ngrams.each do |ele|
-        count += 1 if lang_ngrams.include?(ele)
-      end
-    
-      total = test_ngrams.size
-      density = count.to_f / total.to_f
-    end
   end
   
 end
