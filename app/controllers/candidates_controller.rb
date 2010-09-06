@@ -11,7 +11,7 @@ class CandidatesController < ApplicationController
   def index
     #cache = ActiveSupport::Cache::MemCacheStore.new
     
-    feed_all
+    #feed_all
     get_all_profile_pics if Twittpic.all == []
  
     @columns = 0
