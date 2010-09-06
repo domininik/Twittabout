@@ -1,2 +1,2 @@
-class Twitt < ActiveRecord::Base
+class Twitt < ActiveRecord::Base  
 end

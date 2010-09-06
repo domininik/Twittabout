@@ -2,9 +2,8 @@ class SamplesController < ApplicationController
   before_filter :require_user
   before_filter :set_options, :only => [:new, :edit]
   
-  
-  Density = 0.92
-  
+  include NLP
+    
   # GET /samples
   # GET /samples.xml
   def index

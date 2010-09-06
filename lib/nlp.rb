@@ -1,10 +1,11 @@
 module NLP
+  Density = 0.85
   
   def preprocess(text)
-    text.lstrip!
-    text.downcase!
-    text.gsub!(/[^a-ząęóśźćżłń ]/,'')
-    text.gsub!(/[' ']+/,'_')
+    text = text.lstrip
+    text = text.downcase
+    text = text.gsub(/[^a-ząęóśźćżłń ]/,' ')
+    text = text.gsub(/[' ']+/,'_')
     return text
   end
   
@@ -51,6 +52,25 @@ module NLP
       
       total = test_ngrams.size
       density = count.to_f / total.to_f
+    end
+  end
+  
+  def check_if_polish(text) 
+    if text != ''
+      ngrams = create_ngrams(text, 3)
+      test_ngrams = []
+
+      ngrams.each do |ele|
+        test_ngrams << ele.first + ';'
+      end
+      
+      pol_sample ||= Sample.find_by_language("Polish")
+      pol_ngrams ||= pol_sample.ngram.body.split(/[\d]* - /)
+
+      density = measure_density(test_ngrams, pol_ngrams)
+      density > Density ? true : false
+    else
+      return false
     end
   end
 end
