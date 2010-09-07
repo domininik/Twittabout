@@ -1,5 +1,8 @@
 <p><%= link_to 'Back', sample_path(@sample) %></p>
 <h1>N-grams for <%= @sample.language %> sample text</h1>
+<h2>Original text:</h2> 
+<p><%= @sample.body %></p>
+<p>Length: <%= @sample.body.length %></p>
 <h2>Preprocessed text:</h2> 
 <p><%= @pre %></p>
 <p>Length: <%= @pre.length %></p>

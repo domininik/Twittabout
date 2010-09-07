@@ -1,5 +1,5 @@
 module NLP
-  Density = 0.85
+  Density = 0.89
   
   def preprocess(text)
     text = text.lstrip
@@ -68,6 +68,7 @@ module NLP
       pol_ngrams ||= pol_sample.ngram.body.split(/[\d]* - /)
 
       density = measure_density(test_ngrams, pol_ngrams)
+      puts "Density: #{density}"
       density > Density ? true : false
     else
       return false

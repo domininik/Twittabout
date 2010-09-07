@@ -16,9 +16,11 @@ class TwittsController < ApplicationController
     data.each do |ele|
       content = ele['text']
       puts content
-      puts '**********'
       text = preprocess(content)
-      Twitt.create(:body => content) if check_if_polish(text)
+
+      if content.length.to_f / text.length.to_f < 2.0
+        Twitt.create(:body => content) if check_if_polish(text)
+      end
     end
    
     respond_to do |format|
