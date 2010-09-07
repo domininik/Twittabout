@@ -15,6 +15,8 @@ class TwittsController < ApplicationController
     data = ActiveSupport::JSON.decode(json)
     data.each do |ele|
       content = ele['text']
+      puts content
+      puts '**********'
       text = preprocess(content)
       Twitt.create(:body => content) if check_if_polish(text)
     end

@@ -15,7 +15,7 @@
 <p>
   <% form_tag( :action => :analyze_a) do %>
     <%= hidden_field_tag "sample_id", @sample.id %>
-    Max distance: <%= text_field_tag "max_distance", "5000" %>
+    Max distance: <%= text_field_tag "max_distance", "4000" %>
     <br />
     <%= submit_tag('Analyze') %>
   <% end %>
@@ -33,7 +33,7 @@
 <p>
   <% form_tag( :action => :analyze_c) do %>
     <%= hidden_field_tag "sample_id", @sample.id %>
-    Max distance: <%= text_field_tag "max_distance", "5000" %>
+    Max distance: <%= text_field_tag "max_distance", "4000" %>
     <br />
     <%= submit_tag('Analyze') %>
   <% end %>
