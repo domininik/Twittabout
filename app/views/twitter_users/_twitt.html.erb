@@ -1,13 +1,8 @@
 <div>
-	<div class="avatar left">
-		<%= image_tag twitt.twitter_user.profile_image_url %>
-	</div>
-	<div class="twitt_body left">
-		<p><b><%= link_to twitt.twitter_user.screen_name, twitter_user_path(twitt.twitter_user) %></b></p>
+	<div class="twitt_body">
     <p><%= twitt.body %></p>
     <p class="twitt_info"><%= twitt.originally_created.strftime("%H:%M %d.%m.%Y") %> przez <%= source(twitt) %></p>
   </div>
-  <%= clear %>
   <%= link_to 'Delete', twitt, :confirm => 'Are you sure?', :method => :delete if current_user %>
 </div>
 <hr />

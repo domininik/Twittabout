@@ -1,0 +1,17 @@
+<%= link_to 'powrót', twitter_users_path %>
+<h2><%= @user.name %></h2>
+<div class="avatar left">
+  <%= image_tag @user.profile_image_url %>
+</div>
+<div class="left">
+  Napisał <%= @user.statuses_count %> tweetów | 
+  Ma <%= @user.followers_count %> followerów |
+  Followuje <%= @user.friends_count %> kont |
+  jest na <%= @user.listed_count %> listach
+  <p><%= link_to "http://twitter.com/#{@user.screen_name}", "http://twitter.com/#{@user.screen_name}" %></p>
+</div>
+<%= clear %>
+<% if (url = @user.url) != '' %><p><%= url %></p><% end %>
+<% if (desc = @user.description) != '' %><p><%= desc %></p><% end %>
+<hr />
+<%= render :partial => 'twitt', :collection => @tweets %>

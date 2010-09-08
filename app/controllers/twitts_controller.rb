@@ -3,7 +3,7 @@ class TwittsController < ApplicationController
   include NLP
 
   def index
-    @twitts = Twitt.all(:order => "created_at DESC")
+    @twitts = Twitt.all(:order => "originally_created DESC")
     respond_to do |format|
       format.html {}
     end

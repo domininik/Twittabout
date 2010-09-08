@@ -257,3 +257,16 @@ form#new_rule textarea, form#edit_rule textarea { height: 75px;}
 form input#rule_word {width: 100%;}
 
 input#url { width: 450px; }
+
+div.avatar { margin-right: 10px; }
+div.avatar img { border: 1px solid #fff; }
+
+p.twitt_info, p.twitt_info a { color: #666;}
+
+div.twitt_body { width: 780px; }
+div.twitt_body p { line-height: 20px; }
+
+
+
+
+
