@@ -255,3 +255,5 @@ textarea { width: 100%; }
 form#new_rule textarea, form#edit_rule textarea { height: 75px;}
 
 form input#rule_word {width: 100%;}
+
+input#url { width: 450px; }

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100905193310) do
+ActiveRecord::Schema.define(:version => 20100908200914) do
 
   create_table "items", :force => true do |t|
     t.datetime "created_at"
@@ -51,6 +51,21 @@ ActiveRecord::Schema.define(:version => 20100905193310) do
     t.string   "category"
   end
 
+  create_table "twitter_users", :force => true do |t|
+    t.string   "name"
+    t.string   "profile_image_url"
+    t.string   "url"
+    t.integer  "profile_id"
+    t.integer  "listed_count"
+    t.integer  "followers_count"
+    t.string   "description"
+    t.integer  "statuses_count"
+    t.integer  "friends_count"
+    t.string   "screen_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "twittpics", :force => true do |t|
     t.integer  "user_id"
     t.string   "url"
@@ -62,9 +77,12 @@ ActiveRecord::Schema.define(:version => 20100905193310) do
     t.string   "body"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "twitt_id",   :limit => 8
+    t.integer  "twitt_id",           :limit => 8
     t.datetime "date"
     t.string   "username"
+    t.string   "source"
+    t.integer  "twitter_user_id"
+    t.datetime "originally_created"
   end
 
   create_table "users", :force => true do |t|

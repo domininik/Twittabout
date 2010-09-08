@@ -1,0 +1,25 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  profile_image_url: MyString
+  url: MyString
+  profile_id: 1
+  listed_count: 1
+  followers_count: 1
+  description: MyString
+  statuses_count: 1
+  friends_count: 1
+  screen_name: MyString
+
+two:
+  name: MyString
+  profile_image_url: MyString
+  url: MyString
+  profile_id: 1
+  listed_count: 1
+  followers_count: 1
+  description: MyString
+  statuses_count: 1
+  friends_count: 1
+  screen_name: MyString

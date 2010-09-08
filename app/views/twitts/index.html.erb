@@ -1,7 +1,8 @@
-<div>
-  <%= link_to 'feed', '/feed' %>
-</div>
-
-<div>
-  <%= render :partial => "twitt", :collection => @twitts %>
-</div>
+<% if current_user %>
+	<% form_tag( :action => :feed ) do %>
+	  URL: <%= text_field_tag "url", "http://api.twitter.com/statuses/public_timeline.json" %>
+	  <%= submit_tag('Feed') %>
+	<% end %>
+<% end %>
+<hr />
+<%= render :partial => "twitt", :collection => @twitts %>
