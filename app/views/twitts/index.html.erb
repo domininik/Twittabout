@@ -6,3 +6,5 @@
 <% end %>
 <hr />
 <%= render :partial => "twitt", :collection => @twitts %>
+<%= will_paginate @twitts, :previous_label => '« wstecz', :next_label => 'dalej »' %>
+

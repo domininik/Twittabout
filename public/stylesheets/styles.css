@@ -265,6 +265,9 @@ p.twitt_info, p.twitt_info a { color: #666;}
 
 div.twitt_body { width: 780px; }
 div.twitt_body p { line-height: 20px; }
+div.pagination { text-align: center; }
+div.pagination a, div.pagination span { margin-right: 5px; }
+
 
 
 

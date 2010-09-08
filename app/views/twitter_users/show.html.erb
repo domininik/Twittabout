@@ -14,4 +14,6 @@
 <% if (url = @user.url) != '' %><p><%= url %></p><% end %>
 <% if (desc = @user.description) != '' %><p><%= desc %></p><% end %>
 <hr />
-<%= render :partial => 'twitt', :collection => @tweets %>
+<%= render :partial => 'twitt', :collection => @twitts %>
+
+<%= will_paginate @twitts, :previous_label => '« wstecz', :next_label => 'dalej »' %>

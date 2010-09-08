@@ -12,8 +12,8 @@ class TwitterUsersController < ApplicationController
 
   def show
     @user = TwitterUser.find(params[:id])
-    @tweets = @user.twitts(:order => "originally_created DESC")
-    
+    @twitts = @user.twitts.paginate :page => params[:page], :per_page => 10, :order => "originally_created DESC"
+        
     respond_to do |format|
       format.html
       format.xml  { render :xml => @user }
