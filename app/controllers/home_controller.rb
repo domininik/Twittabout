@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @title = "Polski Twitter :: Twitter Po Polsku :: Twittabout"
+    #@title = "Polski Twitter :: Twitter Po Polsku :: Twittabout"
   end
 
 end

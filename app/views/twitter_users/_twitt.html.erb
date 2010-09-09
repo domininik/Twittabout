@@ -1,6 +1,6 @@
 <div>
 	<div>
-    <p><%= twitt.body %></p>
+		<p><%= links_format(twitt.body) %></p>
     <span class="left twitt_info">
       <%= twitt.originally_created.strftime("%H:%M %d.%m.%Y") %> przez <%= source(twitt) %>
     </span>

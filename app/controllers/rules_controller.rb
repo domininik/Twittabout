@@ -1,4 +1,6 @@
 class RulesController < ApplicationController
+  before_filter :require_user
+  
   # GET /rules
   # GET /rules.xml
   def index

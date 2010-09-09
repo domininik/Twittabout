@@ -10,30 +10,28 @@
 </head>
 <body>
   <div id="header">
-    <% if current_user %>
-      <div class="content">
-        <div id="logo">
-          <%= link_to 'Twittabout', '/' %>
-        </div>
-        <div id="main_menu">
-          <%= link_to "Home", root_path %> |
-          <%= link_to "Samples", samples_path %> |
-          <%= link_to "Rules", rules_path %> |
-          <%= link_to "Twitts", twitts_path %> |
-          <%= link_to "Users", twitter_users_path %>
-        </div>
-        <div id="header_menu">  
-          <% unless current_user %>
-            <%= link_to "Zaloguj", login_path %>
-          <% else %>
-            <%= link_to "Dodaj admina", new_user_path %> |
-            <%= link_to "Edytuj profil", edit_user_path(:current) %> |
-            <%= link_to "Wyloguj", logout_path %>
-          <% end %>
-        </div>
-      <% end %>
-      <%= clear %>
-    </div>
+	  <div class="content">
+	    <div id="logo">
+	      <%= link_to 'Twittabout', '/' %>
+	    </div>
+	    <div id="main_menu">
+	      <%= link_to "Home", root_path %> |
+	      <%= link_to "Samples", samples_path %> |
+	      <%= link_to "Rules", rules_path %> |
+	      <%= link_to "Twitts", twitts_path %> |
+	      <%= link_to "Users", twitter_users_path %>
+	    </div>
+	    <div id="header_menu">  
+	      <% unless current_user %>
+	        <%= link_to "Zaloguj", login_path %>
+	      <% else %>
+	        <%= link_to "Dodaj admina", new_user_path %> |
+	        <%= link_to "Edytuj profil", edit_user_path(:current) %> |
+	        <%= link_to "Wyloguj", logout_path %>
+	      <% end %>
+	    </div>
+	    <%= clear %>
+	  </div>
   </div>
   <div id="content" class="border grey">
     <p class="notice"><%= flash[:notice] %></p>
