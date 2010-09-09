@@ -1,5 +1,14 @@
-<%= link_to 'powrót', twitter_users_path %>
-<h2><%= @user.name %></h2>
+<p><%= link_to 'powrót', twitter_users_path %></p>
+<div class="left">
+	<h2><%= @user.name %></h2>
+</div>
+<% if current_user %>
+  <div class="right">
+    <%= link_to 'Uaktualnij', @user, :method => :put %> |  
+    <%= link_to 'Usuń', @user, :confirm => 'Czy na pewno chcesz usunąć?', :method => :delete %>
+	</div>
+<% end %>
+<%= clear %>
 <div class="avatar left">
   <%= image_tag @user.profile_image_url %>
 </div>

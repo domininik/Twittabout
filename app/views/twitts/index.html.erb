@@ -1,7 +1,8 @@
+<h1><%= @all_size %> tweetów po polsku</h1>
 <% if current_user %>
 	<% form_tag( :action => :feed ) do %>
 	  URL: <%= text_field_tag "url", "http://api.twitter.com/statuses/public_timeline.json" %>
-	  <%= submit_tag('Feed') %>
+	  <%= submit_tag('Pobierz') %>
 	<% end %>
 <% end %>
 <hr />

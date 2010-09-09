@@ -6,7 +6,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users
   map.resources :user_sessions
   map.resources :twitts
-  map.resources :twitter_users
+  map.resources :twitter_users, :as => 'uzytkownicy'
   map.resources :candidates, :as => 'kandydaci_na_prezydenta'
   # The priority is based upon order of creation: first created -> highest priority.
 

@@ -1,8 +1,13 @@
 <div>
-	<div class="twitt_body">
+	<div>
     <p><%= twitt.body %></p>
-    <p class="twitt_info"><%= twitt.originally_created.strftime("%H:%M %d.%m.%Y") %> przez <%= source(twitt) %></p>
+    <span class="left twitt_info">
+      <%= twitt.originally_created.strftime("%H:%M %d.%m.%Y") %> przez <%= source(twitt) %>
+    </span>
+	  <span class="right">
+	    <%= link_to 'Usuń', twitt, :confirm => 'Czy na pewno chcesz usunąć?', :method => :delete if current_user %>
+	  </span>
+	  <%= clear %>
   </div>
-  <%= link_to 'Delete', twitt, :confirm => 'Are you sure?', :method => :delete if current_user %>
 </div>
 <hr />

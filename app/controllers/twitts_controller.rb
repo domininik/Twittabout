@@ -3,6 +3,7 @@ class TwittsController < ApplicationController
   include NLP
 
   def index
+    @all_size = Twitt.all.size
     @twitts = Twitt.paginate :page => params[:page], :per_page => 10, :order => "originally_created DESC"
 
     respond_to do |format|

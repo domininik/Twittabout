@@ -9,9 +9,6 @@ body#fluid {
 }
 
 body, p, ol, ul, td {
-	/*
-  font-family: verdana, arial, helvetica, sans-serif;
-*/
   font-family: Georgia, Times, serif;
   font-size:   14px;
   line-height: 28px;
@@ -54,7 +51,7 @@ body, p, ol, ul, td {
 
 #main_menu {
 	float: left;
-	margin-left: 200px;
+	margin-left: 110px;
 }
 
 #logo {
@@ -68,43 +65,47 @@ pre {
   font-size: 11px;
 }
 
-a { color: #333; }
+a { 
+  color: #333; 
+  text-shadow: none;
+}
 
 .fieldWithErrors {
-  padding: 2px;
-  background-color: red;
   display: inline;
+  margin: 0 !important;
+  border: 1px solid red;
 }
 
 #errorExplanation {
-  width: 400px;
-  border: 2px solid red;
+  border: 1px solid red;
   padding: 7px;
   padding-bottom: 12px;
   margin-bottom: 20px;
   background-color: #f0f0f0;
+  text-align: center;
 }
 
 #errorExplanation h2 {
-  text-align: left;
   font-weight: bold;
   padding: 5px 5px 5px 15px;
   font-size: 12px;
   margin: -7px;
-  background-color: #c00;
-  color: #fff;
   text-shadow: none;
+  font-size: 14px;
+  
 }
 
 #errorExplanation p {
   color: #333;
   margin-bottom: 0;
   padding: 5px;
+  font-size: 14px;
+  
 }
 
 #errorExplanation ul li {
-  font-size: 12px;
   list-style: square;
+  font-size: 14px;
 }
 
 .clear {
@@ -112,7 +113,14 @@ a { color: #333; }
 }
 
 .registration_form div, .login_form div {
-	margin: 20px 0;
+  font-size: 20px;
+	margin: 20px 0 10px 210px;
+	font-family: Georgia, Times, serif;
+}
+
+.registration_form div input, .login_form div input { 
+  font-family: Georgia, Times, serif;
+  font-size: 20px;
 }
 
 .twitt {
@@ -149,13 +157,13 @@ span.author {
 
 p.notice {
 	color: green;
-	font-size: 18px;
+	font-size: 20px;
 	text-align: center;
 }
 
 p.error {
 	color: red;
-	font-size: 18px;
+	font-size: 20px;
 	text-align: center;
 }
 
@@ -258,13 +266,13 @@ form input#rule_word {width: 100%;}
 
 input#url { width: 450px; }
 
-div.avatar { margin-right: 10px; }
+div.avatar { margin-right: 10px; width: 49px; height: 49px;}
 div.avatar img { border: 1px solid #fff; }
 
-p.twitt_info, p.twitt_info a { color: #666;}
+.twitt_info, .twitt_info a { color: #666;}
 
 div.twitt_body { width: 780px; }
-div.twitt_body p { line-height: 20px; }
+div.twitt_body p, div.twitt_body span { line-height: 20px; }
 div.pagination { text-align: center; }
 div.pagination a, div.pagination span { margin-right: 5px; }
 

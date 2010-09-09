@@ -5,7 +5,7 @@
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />  
   <meta name="google-site-verification" content="zk4A2cm8SrPl-mXovQVxOHdtXcrevmlVu8Mgjz6oZYE" />
-  <title><%= @title ? @title : "Twittabout :: #{controller.controller_name.capitalize}" %></title>
+  <title><%= @title ? @title + "  :: Polski Twitter (Twittabout)" : "Twittabout :: #{controller.controller_name.capitalize}" %></title>
   <%= stylesheet_link_tag 'styles' %>
 </head>
 <body>
@@ -24,11 +24,11 @@
         </div>
         <div id="header_menu">  
           <% unless current_user %>
-            <%#= link_to "Register", new_user_path %> |
-            <%= link_to "Log in", login_path %>
+            <%= link_to "Zaloguj", login_path %>
           <% else %>
-            <%= link_to "Edit profile", edit_user_path(:current) %> |
-            <%= link_to "Log out", logout_path %>
+            <%= link_to "Dodaj admina", new_user_path %> |
+            <%= link_to "Edytuj profil", edit_user_path(:current) %> |
+            <%= link_to "Wyloguj", logout_path %>
           <% end %>
         </div>
       <% end %>
