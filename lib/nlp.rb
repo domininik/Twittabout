@@ -74,4 +74,29 @@ module NLP
       return false
     end
   end
+  
+  def check_category
+    tab = self.body.downcase.split
+    tab.delete_if {|ele| ele.length == 1 }
+    total = {}
+    tab.each do |word| 
+      word.gsub!(/[^a-ząęóśźćżłń]/,'')
+      Rule.all.each do |rule|
+        cat = rule.category
+        total[cat] = 0 if total[cat].nil?
+        total[cat] += rule.word_weight if rule.word.split(', ').include? word
+        total[cat] += rule.synonymy_weight if rule.synonymy.split(', ').include? word
+        total[cat] += rule.is_a_weight if rule.is_a.split(', ').include? word
+        total[cat] += rule.similar_to_weight if rule.similar_to.split(', ').include? word
+        total[cat] += rule.is_a_part_of_weight if rule.is_a_part_of.split(', ').include? word
+        total[cat] += rule.consists_of_weight if rule.consists_of.split(', ').include? word
+        total[cat] += rule.destination_weight if rule.destination.split(', ').include? word
+      end
+    end
+    if total['muzyka'] and total['muzyka'] > 0
+      self.update_attribute(:category, 'muzyka')
+    else
+      self.update_attribute(:category, nil)
+    end
+  end
 end

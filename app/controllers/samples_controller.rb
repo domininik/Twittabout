@@ -250,25 +250,9 @@ class SamplesController < ApplicationController
   # Category Rule Method
   def analyze_e
     @sample = Sample.find(params[:sample_id])
-    tab = @sample.body.downcase.split
-    tab.delete_if {|ele| ele.length == 1 }
-    total = {}
-    
-    tab.each do |word| 
-      word.gsub!(/[^a-ząęóśźćżłń]/,'')
-      Rule.all.each do |rule|
-        cat = rule.category
-        total[cat] = 0 if total[cat].nil?
-        total[cat] += rule.word_weight if rule.word.include? word
-        total[cat] += rule.synonymy_weight if rule.synonymy.include? word
-        total[cat] += rule.is_a_weight if rule.is_a.include? word
-        total[cat] += rule.similar_to_weight if rule.similar_to.include? word
-        total[cat] += rule.is_a_part_of_weight if rule.is_a_part_of.include? word
-        total[cat] += rule.consists_of_weight if rule.consists_of.include? word
-        total[cat] += rule.destination_weight if rule.destination.include? word
-      end
-    end
-    flash[:notice] = "Total for music: #{total['muzyka']} | sport: #{total['sport']}" 
+    @sample.check_category
+    category = (@sample.category.nil? ? 'unknown' : @sample.category)
+    flash[:notice] = "Category: #{category}" 
     redirect_to(@sample)
   end
   

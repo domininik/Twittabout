@@ -17,7 +17,7 @@
   Followuje <%= @user.friends_count %> kont |
   jest na <%= @user.listed_count %> listach
   <p><%= link_to "http://twitter.com/#{@user.screen_name}", "http://twitter.com/#{@user.screen_name}" %></p>
-	<% if (url = @user.url) != '' %><p><%= url %></p><% end %>
+	<% if (url = @user.url) != '' %><p><%= links_format(url) %></p><% end %>
 	<% if (desc = @user.description) != '' %><p><%= desc %></p><% end %>
 </div>
 <%= clear %>

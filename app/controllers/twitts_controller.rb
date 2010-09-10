@@ -4,7 +4,11 @@ class TwittsController < ApplicationController
 
   def index
     @all_size = Twitt.all.size
-    @twitts = Twitt.paginate :page => params[:page], :per_page => 10, :order => "originally_created DESC"
+    if cat = params[:temat]
+      @twitts = Twitt.paginate :page => params[:page], :per_page => 10, :conditions => "category = '#{cat}'", :order => "originally_created DESC"
+    else
+      @twitts = Twitt.paginate :page => params[:page], :per_page => 10, :order => "originally_created DESC"
+    end
 
     respond_to do |format|
       format.html {}
@@ -61,7 +65,19 @@ class TwittsController < ApplicationController
     end
    
     respond_to do |format|
+      format.html { 
+        flash[:notice] = "Pobrano nowe tweety"
+        redirect_to twitts_path 
+      }
+    end
+  end
+  
+  def update_categories
+    Twitt.all.each { |twitt| twitt.check_category }
+
+    respond_to do |format|
       format.html {
+        flash[:notice] = "Uaktualniono kategorie"
         redirect_to twitts_path
       }
     end

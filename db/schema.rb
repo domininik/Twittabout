@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100908200914) do
+ActiveRecord::Schema.define(:version => 20100910114354) do
 
   create_table "items", :force => true do |t|
     t.datetime "created_at"
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(:version => 20100908200914) do
     t.string   "source"
     t.integer  "twitter_user_id"
     t.datetime "originally_created"
+    t.string   "category"
   end
 
   create_table "users", :force => true do |t|

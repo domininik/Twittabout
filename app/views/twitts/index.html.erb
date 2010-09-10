@@ -1,4 +1,16 @@
 <h1><%= @all_size %> tweetów po polsku</h1>
+<div class="left">
+	<%= link_to 'wszystkie', twitts_path %> |
+	<%= link_to 'muzyka', twitts_path(:temat => 'muzyka') %>
+</div>
+<div class="right">
+<% if current_user %>
+	<% form_tag( :action => :update_categories) do %>
+    <%= submit_tag('Uaktualnij kategorie') %>
+  <% end %>
+<% end %>
+</div>
+<%= clear %>
 <% if current_user %>
 	<% form_tag( :action => :feed ) do %>
 	  URL: <%= text_field_tag "url", "http://api.twitter.com/statuses/public_timeline.json" %>
