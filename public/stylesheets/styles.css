@@ -16,9 +16,14 @@ body, p, ol, ul, td {
 }
 
 #content, .content {
-	width: 840px;
+	width: 900px;
 	margin: 20px auto;
 	padding: 20px;
+}
+
+.regular_width {
+  width: 940px;
+  margin: 0 auto;
 }
 
 #fluid_content {
@@ -47,17 +52,24 @@ body, p, ol, ul, td {
 
 #header_menu {
 	float: right;
+	padding-top: 60px;
 }
 
 #main_menu {
 	float: left;
 	margin-left: 110px;
+	padding-top: 60px;
 }
 
-#logo {
-	font-size: 24px;
-	float:left;
+#logo { float:left; }
+#logo img { float:left; }
+#logo h1 { 
+  float: left; 
+  font-size: 35px;
+  padding-top: 40px;
 }
+
+#logo h1 a {text-decoration: none;}
 
 pre {
   background-color: #eee;
@@ -266,18 +278,36 @@ form input#rule_word {width: 100%;}
 
 input#url { width: 450px; }
 
-div.avatar { margin-right: 10px; width: 49px; height: 49px;}
+div.avatar { margin-right: 10px; width: 50px; height: 50px;}
 div.avatar img { border: 1px solid #fff; }
 
-.twitt_info, .twitt_info a { color: #666;}
+.twitt_info, .twitt_info a { font-size: 13px; color: #666;}
 
 div.twitt_body { width: 780px; }
 div.twitt_body p, div.twitt_body span { line-height: 20px; }
 div.pagination { text-align: center; }
 div.pagination a, div.pagination span { margin-right: 5px; }
 
+.home_twitts {
+  float: left; 
+  width: 600px;
+}
+.home_twitts .twitt_body { width: 540px; }
+.home_users {
+  float:left;
+  width: 280px;
+  margin-left: 20px;
+}
 
+.user_info {
+  float: left;
+  width: 220px;
+}
 
+.user_info p { 
+  font-size: 12px; 
+  line-height: 16px;
+}
 
 
 

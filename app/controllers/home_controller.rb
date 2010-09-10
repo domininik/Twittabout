@@ -1,6 +1,12 @@
 class HomeController < ApplicationController
   def index
-    #@title = "Polski Twitter :: Twitter Po Polsku :: Twittabout"
+    @title = ""
+    get_twitts
+    @users = TwitterUser.all(:order => "followers_count DESC")
+    
+    respond_to do |format|
+      format.html {}
+    end
   end
 
 end

@@ -3,12 +3,7 @@ class TwittsController < ApplicationController
   include NLP
 
   def index
-    @all_size = Twitt.all.size
-    if cat = params[:temat]
-      @twitts = Twitt.paginate :page => params[:page], :per_page => 10, :conditions => "category = '#{cat}'", :order => "originally_created DESC"
-    else
-      @twitts = Twitt.paginate :page => params[:page], :per_page => 10, :order => "originally_created DESC"
-    end
+    get_twitts
 
     respond_to do |format|
       format.html {}

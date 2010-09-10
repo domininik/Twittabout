@@ -1,0 +1,19 @@
+<div class="user">
+	<div class="avatar left">
+	  <%= image_tag user.profile_image_url %>
+	</div>
+	<div class="user_info">
+		<p>
+		  <b><%= link_to user.screen_name, twitter_user_path(user) %></b>
+	  </p>
+    <p>
+	    napisał <%= user.statuses_count %> tweetów | 
+      ma <%= user.followers_count %> followerów
+      <br />
+      followuje <%= user.friends_count %> kont |
+      jest na <%= user.listed_count %> listach
+    </p>
+  </div>
+  <%= clear %>
+</div>
+<hr />

@@ -10,24 +10,26 @@
 </head>
 <body>
   <div id="header">
-	  <div class="content">
+	  <div class="regular_width">
 	    <div id="logo">
-	      <%= link_to 'Twittabout', '/' %>
+		    <%= image_tag('/images/icon.png') %>
+	      <h1><%= link_to 'polski twitter', '/' %></h1>
 	    </div>
 	    <div id="main_menu">
-	      <%= link_to "Home", root_path %> |
-	      <%= link_to "Samples", samples_path %> |
-	      <%= link_to "Rules", rules_path %> |
-	      <%= link_to "Twitts", twitts_path %> |
-	      <%= link_to "Users", twitter_users_path %>
+			  <% if current_user %>
+		      <%= link_to "Samples", samples_path %> |
+		      <%= link_to "Rules", rules_path %> |
+		      <%= link_to "Twitts", twitts_path %> |
+		      <%= link_to "Users", twitter_users_path %>
+		    <% end %>
 	    </div>
 	    <div id="header_menu">  
 	      <% unless current_user %>
-	        <%= link_to "Zaloguj", login_path %>
+	        <%= link_to "zaloguj", login_path %>
 	      <% else %>
-	        <%= link_to "Dodaj admina", new_user_path %> |
-	        <%= link_to "Edytuj profil", edit_user_path(:current) %> |
-	        <%= link_to "Wyloguj", logout_path %>
+	        <%= link_to "dodaj admina", new_user_path %> |
+	        <%= link_to "edytuj profil", edit_user_path(:current) %> |
+	        <%= link_to "wyloguj", logout_path %>
 	      <% end %>
 	    </div>
 	    <%= clear %>

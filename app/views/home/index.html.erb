@@ -1,3 +1,33 @@
+<div id="home">
+	<div class="home_twitts">
+		<h2><%= @all_size %> tweetów po polsku</h2>
+		<h3>
+		  <%= link_to 'ostatnie', root_path %> |
+		  <%= link_to 'muzyka', root_path(:temat => 'muzyka') %>
+		</h3>
+		<%= render :partial => "shared/twitt", :collection => @twitts %>
+		<%= will_paginate @twitts, :previous_label => '« wstecz', :next_label => 'dalej »' %>
+	</div>
+	<div class="home_users">
+		<h2><%= @users.size %> użytkowników</h2>
+		<p><%= link_to 'zobacz wszystkich', twitter_users_path %></p>
+		<%= render :partial => 'home/user', :collection => @users %>
+	</div>
+	<%= clear %>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
 <div id="home_info">
   <h1>Witaj,</h1>
   <p>Aplikacja <span class="app_name">Polski Twitter :: Twitter Po Polsku :: Twittabout</span> jest w trakcie budowy.</p>
@@ -9,4 +39,5 @@
   </div>
   <%= clear %>
 </div>
+-->
  

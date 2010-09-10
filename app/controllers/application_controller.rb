@@ -10,6 +10,16 @@ class ApplicationController < ActionController::Base
   # filter_parameter_logging :password
   helper_method :current_user_session, :current_user
 
+  def get_twitts
+    @all_size = Twitt.all.size
+    if cat = params[:temat]
+      @twitts = Twitt.paginate :page => params[:page], :per_page => 10, :conditions => "category = '#{cat}'", :order => "originally_created DESC"
+    else
+      @twitts = Twitt.paginate :page => params[:page], :per_page => 10, :order => "originally_created DESC"
+    end
+  end
+
+
   private
     def current_user_session
       return @current_user_session if defined?(@current_user_session)

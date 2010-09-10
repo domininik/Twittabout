@@ -72,7 +72,10 @@ class TwitterUsersController < ApplicationController
     end
     
     respond_to do |format|
-      format.html { redirect_to(@user) }
+      format.html { 
+        flash[:notice] = "Uaktualniono użytkownika #{@user.screen_name}"
+        redirect_to(@user) 
+      }
       format.xml  { head :ok }
     end
   end
