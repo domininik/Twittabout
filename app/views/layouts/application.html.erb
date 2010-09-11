@@ -24,9 +24,7 @@
 		    <% end %>
 	    </div>
 	    <div id="header_menu">  
-	      <% unless current_user %>
-	        <%= link_to "zaloguj", login_path %>
-	      <% else %>
+	      <% if current_user %>
 	        <%= link_to "dodaj admina", new_user_path %> |
 	        <%= link_to "edytuj profil", edit_user_path(:current) %> |
 	        <%= link_to "wyloguj", logout_path %>
@@ -41,6 +39,18 @@
     <%= yield %>
   </div>
   <div id="footer">
+	  <div class="regular_width">
+		  <div id="footer_icon">
+		    <%= link_to image_tag('/images/icon_64.png'), 'http://twitter.com/TwittaboutCom' %>
+		  </div>
+		  <div id="footer_info">
+			  <span><%= link_to 'twitter.com/TwittaboutCom', 'http://twitter.com/TwittaboutCom' %></span>
+			  <span>Polski Twitter :: Twitter Po Polsku :: Twittabout</span> 
+			  <span>Copyright © 2010 Dominik Fijaś</span>
+			  <span><%= link_to 'twitter.com/domininik', 'http://twitter.com/domininik' %></span>
+			</div>
+		  <%= clear %>
+	  </div>
   </div>
 </body>
 </html>

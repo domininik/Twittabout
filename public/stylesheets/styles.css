@@ -37,12 +37,21 @@ body, p, ol, ul, td {
 	height: 48px;
 }
 
-#header {
+#header, #footer {
 	width: 100%;
 	background-color: #333;
 	border-top: 1px solid #fff;
 	border-bottom: 1px solid #fff;
 	padding: 5px 0px;
+}
+
+#footer span {
+  margin-left: 10px;
+}
+
+#footer span, #footer a { 
+  color: #fff;
+  text-shadow: none;
 }
 
 #header, #header a {
@@ -259,7 +268,12 @@ p.time {
 
 #footer_icon img {
 	border: none;
-	float: right;
+	float: left;
+}
+
+#footer_info { 
+  float: left;
+  padding-top: 20px;
 }
 
 .left { float: left; }

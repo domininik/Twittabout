@@ -1,17 +1,18 @@
 <div id="home">
 	<div class="home_twitts">
-		<h2><%= @all_size %> tweetów po polsku</h2>
+		<h2><%= @all_size %> tweetów napisanych po polsku</h2>
 		<h3>
 		  <%= link_to 'ostatnie', root_path %> |
-		  <%= link_to 'muzyka', root_path(:temat => 'muzyka') %>
+		  temat: <%= link_to 'muzyka', root_path(:temat => 'muzyka') %>
 		</h3>
 		<%= render :partial => "shared/twitt", :collection => @twitts %>
 		<%= will_paginate @twitts, :previous_label => '« wstecz', :next_label => 'dalej »' %>
 	</div>
 	<div class="home_users">
-		<h2><%= @users.size %> użytkowników</h2>
-		<p><%= link_to 'zobacz wszystkich', twitter_users_path %></p>
+		<h2><%= @users.size %> polskich użytkowników</h2>
+		<h3><%= link_to 'najpopularniejsi:', twitter_users_path(:sort => 'najchetniej_followani') %></h3>
 		<%= render :partial => 'home/user', :collection => @users %>
+		<p><%= link_to 'zobacz wszystkich', twitter_users_path %></p>
 	</div>
 	<%= clear %>
 </div>

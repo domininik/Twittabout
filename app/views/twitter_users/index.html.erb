@@ -1,6 +1,8 @@
-<h1><%= @users.size %> użytkowników</h1>
-<%= link_to 'alfabetycznie', twitter_users_path %> |
-<%= link_to 'najbardziej aktywni', twitter_users_path(:sort => 'najbardziej_aktywni') %> |
-<%= link_to 'najchętniej followowani', twitter_users_path(:sort => 'najchetniej_followani') %>
+<h1><%= @users.size %> polskich użytkowników</h1>
+<h2>
+	<%= link_to 'alfabetycznie', twitter_users_path %> |
+	<%= link_to 'najchętniej followowani', twitter_users_path(:sort => 'najchetniej_followani') %> |
+	<%= link_to 'najbardziej aktywni', twitter_users_path(:sort => 'najbardziej_aktywni') %>
+</h2>
 <hr />
 <%= render :partial => @users %>
