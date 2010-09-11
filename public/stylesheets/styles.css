@@ -178,14 +178,16 @@ span.author {
 
 p.notice {
 	color: green;
-	font-size: 20px;
+	font-size: 24px;
 	text-align: center;
+	font-weight: bold;
 }
 
 p.error {
 	color: red;
-	font-size: 20px;
+	font-size: 24px;
 	text-align: center;
+	font-weight: bold;
 }
 
 div#icon {
@@ -297,7 +299,7 @@ div.avatar img { border: 1px solid #fff; }
 
 .twitt_info, .twitt_info a { font-size: 13px; color: #666;}
 
-div.twitt_body { width: 780px; }
+div.twitt_body { width: 840px; }
 div.twitt_body p, div.twitt_body span { line-height: 20px; }
 div.pagination { text-align: center; }
 div.pagination a, div.pagination span { margin-right: 5px; }
@@ -307,7 +309,10 @@ div.pagination a, div.pagination span { margin-right: 5px; }
   width: 600px;
 }
 .home_twitts .twitt_body { width: 540px; }
-.home_users {
+
+.my_twitt .twitt_body { width: 100%; }
+
+.top_users {
   float:left;
   width: 280px;
   margin-left: 20px;
@@ -322,6 +327,10 @@ div.pagination a, div.pagination span { margin-right: 5px; }
   font-size: 12px; 
   line-height: 16px;
 }
+
+.user .info { font-size: 12px;}
+
+.users { width: 600px;}
 
 
 

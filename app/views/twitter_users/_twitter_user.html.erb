@@ -5,14 +5,16 @@
 	<div class="left">
 		<p>
 		  <b><%= link_to twitter_user.screen_name, twitter_user_path(twitter_user) %></b>
+		  (<%=twitter_user.name%>)
 	  </p>
     <p>
-	    napisał <%= twitter_user.statuses_count %> tweetów | 
-      ma <%= twitter_user.followers_count %> followerów |
+	    <%= twitter_user.statuses_count %> tweetów | 
+      <%= twitter_user.followers_count %> followerów |
       followuje <%= twitter_user.friends_count %> kont |
       jest na <%= twitter_user.listed_count %> listach
     </p>
   </div>
   <%= clear %>
+  <p><%= links_format(twitter_user.latest_tweet.body) %></p>
 </div>
 <hr />

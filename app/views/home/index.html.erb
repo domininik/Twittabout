@@ -8,11 +8,14 @@
 		<%= render :partial => "shared/twitt", :collection => @twitts %>
 		<%= will_paginate @twitts, :previous_label => '« wstecz', :next_label => 'dalej »' %>
 	</div>
-	<div class="home_users">
-		<h2><%= @users.size %> polskich użytkowników</h2>
-		<h3><%= link_to 'najpopularniejsi:', twitter_users_path(:sort => 'najchetniej_followani') %></h3>
-		<%= render :partial => 'home/user', :collection => @users %>
+	<div class="top_users">
+		<h2><%= @all_users_size %> polskich użytkowników</h2>
+		<h3><%= link_to 'najpopularniejsi:', twitter_users_path(:sort => 'najpopularniejsi') %></h3>
+		<%= render :partial => 'shared/user', :collection => @users %>
 		<p><%= link_to 'zobacz wszystkich', twitter_users_path %></p>
+    <h3><%= link_to 'Polski Twitter (Twittabout)', twitter_user_path(@me) %></h3>
+    <%= render :partial => 'my_twitt', :collection => @my_twitts %>
+    <%= link_to 'zobacz wszystkie', twitter_user_path(@me) %>
 	</div>
 	<%= clear %>
 </div>

@@ -1,8 +1,20 @@
-<h1><%= @users.size %> polskich użytkowników</h1>
-<h2>
-	<%= link_to 'alfabetycznie', twitter_users_path %> |
-	<%= link_to 'najchętniej followowani', twitter_users_path(:sort => 'najchetniej_followani') %> |
-	<%= link_to 'najbardziej aktywni', twitter_users_path(:sort => 'najbardziej_aktywni') %>
-</h2>
-<hr />
-<%= render :partial => @users %>
+<div class="users left">
+	<h1><%= @users.size %> polskich użytkowników</h1>
+	<h3>
+		<%= link_to 'alfabetycznie', twitter_users_path %> |
+		<%= link_to 'najpopularniejsi', twitter_users_path(:sort => 'najpopularniejsi') %> |
+		<%= link_to 'najbardziej aktywni', twitter_users_path(:sort => 'najbardziej_aktywni') %>
+	</h3>
+	<% if current_user %>
+	  <% form_tag(:action => :update_all) do %>
+	    <%= submit_tag 'uaktualnij wszystkich' %>
+	  <% end %>
+	<% end %>
+	<hr />
+	<%= render :partial => @users %>
+</div>
+<div class="top_users">
+	<h3>najpopularniejsi:</h3>
+	<%= render :partial => 'shared/user', :collection => @top_users %>
+</div>
+<%= clear %>

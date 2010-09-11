@@ -1,9 +1,10 @@
-<h2><%= @all_size %> tweetów po polsku</h2>
 <div class="left">
-	<h3>
-	  <%= link_to 'wszystkie', twitts_path %> |
-	  <%= link_to 'muzyka', twitts_path(:temat => 'muzyka') %>
-	</h3>
+  <% if current_user %>
+		<% form_tag( :action => :feed ) do %>
+		  URL: <%= text_field_tag "url", "http://api.twitter.com/statuses/public_timeline.json" %>
+		  <%= submit_tag('Pobierz') %>
+		<% end %>
+	<% end %>
 </div>
 <div class="right">
 <% if current_user %>
@@ -13,12 +14,6 @@
 <% end %>
 </div>
 <%= clear %>
-<% if current_user %>
-	<% form_tag( :action => :feed ) do %>
-	  URL: <%= text_field_tag "url", "http://api.twitter.com/statuses/public_timeline.json" %>
-	  <%= submit_tag('Pobierz') %>
-	<% end %>
-<% end %>
 <hr />
 <%= render :partial => "shared/twitt", :collection => @twitts %>
 <%= will_paginate @twitts, :previous_label => '« wstecz', :next_label => 'dalej »' %>
