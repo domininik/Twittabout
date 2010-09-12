@@ -10,7 +10,10 @@
 	</div>
 	<div class="top_users">
 		<h2><%= @all_users_size %> polskich użytkowników</h2>
-		<h3><%= link_to 'najpopularniejsi:', twitter_users_path(:sort => 'najpopularniejsi') %></h3>
+		<h3>
+		  <%= link_to 'najpopularniejsi', twitter_users_path(:sort => 'najpopularniejsi') %> |
+		  <%= link_to 'wszyscy', twitter_users_path %>
+		</h3>
 		<%= render :partial => 'shared/user', :collection => @users %>
 		<p><%= link_to 'zobacz wszystkich', twitter_users_path %></p>
     <h3><%= link_to 'Polski Twitter (Twittabout)', twitter_user_path(@me) %></h3>

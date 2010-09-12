@@ -15,27 +15,29 @@
 		    <%= image_tag('/images/icon.png') %>
 	      <h1><%= link_to 'polski twitter', '/' %></h1>
 	    </div>
-	    <div id="main_menu">
-			  <% if current_user %>
-		      <%= link_to "Samples", samples_path %> |
-		      <%= link_to "Rules", rules_path %> |
-		      <%= link_to "Twitts", twitts_path %> |
-		      <%= link_to "Users", twitter_users_path %>
-		    <% end %>
-	    </div>
-	    <div id="header_menu">  
-	      <% if current_user %>
-	        <%= link_to "dodaj admina", new_user_path %> |
-	        <%= link_to "edytuj profil", edit_user_path(:current) %> |
-	        <%= link_to "wyloguj", logout_path %>
-	      <% end %>
+	    <div class="right">
+		    <div id="admin_menu">
+			    &nbsp;
+				  <% if current_user %>
+			      <%= link_to "sample", samples_path %> |
+			      <%= link_to "reguły", rules_path %> |
+		        <%= link_to "dodaj admina", new_user_path %> |
+		        <%= link_to "edytuj profil", edit_user_path(:current) %> |
+		        <%= link_to "wyloguj", logout_path %>
+		      <% end %>
+		    </div>
+		    <%= clear %>
+		    <div id="main_menu">
+			    <%= link_to "tweety", root_path %> |
+		      <%= link_to "użytkownicy", twitter_users_path %>
+			  </div>
 	    </div>
 	    <%= clear %>
 	  </div>
   </div>
   <div id="content" class="border grey">
-    <p class="notice"><%= flash[:notice] %></p>
-    <p class="error"><%= flash[:error] %></p>
+    <% if flash[:notice] %><p class="notice"><%= flash[:notice] %></p><% end %>
+    <% if flash[:error] %><p class="error"><%= flash[:error] %></p><% end %>
     <%= yield %>
   </div>
   <div id="footer">

@@ -1,5 +1,5 @@
 class TwitterUsersController < ApplicationController
-  before_filter :require_user, :except => [:index, :show]
+  before_filter :require_user, :except => [:index, :show, :search]
   
   def index
     get_top_users
@@ -63,6 +63,17 @@ class TwitterUsersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(twitter_users_url) }
       format.xml  { head :ok }
+    end
+  end
+  
+  def search    
+    @user = TwitterUser.find_by_screen_name(params[:q])
+    
+    if @user
+      redirect_to twitter_user_url(@user)
+    else
+      flash[:error] = "Nie znaleziono takiego użytkownika"
+      redirect_to twitter_users_path
     end
   end
   
