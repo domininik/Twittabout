@@ -1,22 +1,22 @@
-<div class="left">
-	<h2><%= @user.name %></h2>
-</div>
 <% if current_user %>
-  <div class="right">
-    <%= link_to 'Uaktualnij', @user, :method => :put %> |  
-    <%= link_to 'Usuń', @user, :confirm => 'Czy na pewno chcesz usunąć?', :method => :delete %>
-	</div>
+  <p class="right">
+    <%= link_to 'uaktualnij', @user, :method => :put %> |  
+    <%= link_to 'usuń', @user, :confirm => 'Czy na pewno chcesz usunąć?', :method => :delete %>
+	</p>
 <% end %>
 <%= clear %>
 <div class="avatar left">
   <%= image_tag @user.profile_image_url %>
 </div>
 <div class="left">
-  Napisał <%= @user.statuses_count %> tweetów | 
-  Ma <%= @user.followers_count %> followerów |
-  Followuje <%= @user.friends_count %> kont |
+	<h2 class="name"><%= @user.name %></h2>
+	<p><%= link_to "http://twitter.com/#{@user.screen_name}", "http://twitter.com/#{@user.screen_name}" %></p>
+</div>
+<div class="right">
+	napisał <%= @user.statuses_count %> tweetów | 
+  ma <%= @user.followers_count %> followerów |
+  followuje <%= @user.friends_count %> kont |
   jest na <%= @user.listed_count %> listach
-  <p><%= link_to "http://twitter.com/#{@user.screen_name}", "http://twitter.com/#{@user.screen_name}" %></p>
 	<% if (url = @user.url) %><p><%= links_format(url) %></p><% end %>
 	<% if (desc = @user.description) %><p><%= desc %></p><% end %>
 </div>

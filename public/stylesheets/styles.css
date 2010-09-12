@@ -1,12 +1,7 @@
 body { 
 	color: #222;
-/*	
 	text-shadow: 0px 1px 0px #fff;
-	background-color: #eee;
-*/
 	background-color: #6699cc; 
-  
-	
 }
 
 body#fluid {
@@ -21,6 +16,10 @@ body, p, ol, ul, td {
 }
 
 h1, h2, h3 {font-family: Georgia, Times, serif;}
+h2.name { 
+  margin: 0;
+  font-family: Helvetica, Arial, sans-serif;
+}
 
 #content, .content {
 	width: 900px;
@@ -32,6 +31,8 @@ h1, h2, h3 {font-family: Georgia, Times, serif;}
   width: 940px;
   margin: 0 auto;
 }
+
+hr {color: #fff;}
 
 #fluid_content {
 	width: 100%;
@@ -71,19 +72,27 @@ h1, h2, h3 {font-family: Georgia, Times, serif;}
 
 #main_menu {
   font-family: Georgia, Times, serif;
-	padding-top: 35px;
-	font-size: 28px;
-	margin-right: 140px;
+	padding-top: 32px;
+	font-size: 30px;
+	float: right;
 }
 
-#admin_menu { float:right;}
+#main_menu a { margin-right: 70px;}
+
+#admin_menu { 
+  float:right;
+  margin-right: 10px;
+  padding-right: 5px;
+}
+
+#admin_menu a { text-decoration: none;}
 
 #logo { float:left; }
 #logo img { float:left; }
 #logo h1 { 
   float: left; 
-  font-size: 35px;
-  padding-top: 40px;
+  font-size: 48px;
+  padding-top: 25px;
 }
 
 #logo h1 a {text-decoration: none;}
@@ -95,6 +104,12 @@ pre {
 }
 
 h2 {font-size: 20px;}
+
+div#banner h2 {
+  margin:0;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: normal;
+}
 
 a { 
   color: #18344F; 
@@ -145,13 +160,19 @@ a {
 
 .registration_form div, .login_form div {
   font-size: 20px;
-	margin: 20px 0 10px 210px;
+	margin: 20px 0 10px 150px;
 	font-family: Helvetica, Arial, sans-serif;
 }
 
 .registration_form div input, .login_form div input { 
   font-family: Helvetica, Arial, sans-serif;
   font-size: 20px;
+}
+
+.registration_form div label, .login_form div label {
+  display: block;
+  float: left;
+  width: 150px;
 }
 
 .twitt {
@@ -195,8 +216,8 @@ p.notice, p.error {
 	padding: 5px;
 }
 
-p.notice { color: #33cc66; }
-p.error { color: #cc3333; }
+p.notice { color: #33cc66; border: 1px solid #33cc66;}
+p.error { color: #cc3333; border: 1px solid #cc3333;}
 
 div#icon {
 	float: right;
@@ -211,11 +232,6 @@ div#icon a img {
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
-/*
-	-webkit-box-shadow: 5px 5px 5px #666;
-	-moz-box-shadow: 5px 5px 5px #666;
-	box-shadow: 5px 5px 5px #666;
-*/
 }
 
 .candidate {
@@ -289,16 +305,17 @@ p.time {
   padding-top: 20px;
 }
 
-.left { float: left; }
-.right { float: right; }
+div.left { float: left; }
+div.right { float: right; }
 .center { text-align: center; }
+
+p.left, h2.left { text-align: left; }
+p.right, h2.right { text-align: right; }
 
 span#info { margin-left: 45px; }
 
 .grey { 
-  background-color: #ccc; 
-  background-color: #ccccff;
-	
+  background-color: #ccccff;	
 }
 
 textarea { width: 100%; }

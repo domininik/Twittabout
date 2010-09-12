@@ -14,6 +14,11 @@
 <% end %>
 </div>
 <%= clear %>
+<h1><%= @all_size %> tweetów napisanych po polsku</h1>
+<h2>
+  <%= link_to 'ostatnie', twitts_path %> |
+  temat: <%= link_to 'muzyka', twitts_path(:temat => 'muzyka') %>
+</h2>
 <hr />
 <%= render :partial => "shared/twitt", :collection => @twitts %>
 <%= will_paginate @twitts, :previous_label => '« wstecz', :next_label => 'dalej »' %>

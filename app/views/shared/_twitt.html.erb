@@ -9,7 +9,7 @@
       <%= twitt.originally_created.strftime("%H:%M %d.%m.%Y") %> przez <%= source(twitt) %>
     </span>
 	  <span class="right">
-	    <%= link_to 'Usuń', twitt, :confirm => 'Czy na pewno chcesz usunąć?', :method => :delete if current_user %>
+	    <%= link_to 'usuń', twitt, :confirm => 'Czy na pewno chcesz usunąć?', :method => :delete if current_user %>
 	  </span>
 	  <%= clear %>
   </div>
