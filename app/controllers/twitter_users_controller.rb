@@ -44,6 +44,7 @@ class TwitterUsersController < ApplicationController
     end
   end
   
+  # TODO make auto_update
   def update_all
     TwitterUser.all.each { |user| user.update_data }
     
