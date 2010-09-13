@@ -21,6 +21,8 @@ h2.name {
   font-family: Helvetica, Arial, sans-serif;
 }
 
+h2.twitt_menu a, h3.twitt_menu a { margin: 0 15px; }
+
 #content, .content {
 	width: 900px;
 	margin: 20px auto;
@@ -305,8 +307,8 @@ p.time {
   padding-top: 20px;
 }
 
-div.left { float: left; }
-div.right { float: right; }
+div.left, span.left { float: left; }
+div.right, span.right { float: right; }
 .center { text-align: center; }
 
 p.left, h2.left { text-align: left; }
@@ -320,7 +322,7 @@ span#info { margin-left: 45px; }
 
 textarea { width: 100%; }
 
-form#new_rule textarea, form#edit_rule textarea { height: 75px;}
+form#new_rule textarea, form.edit_rule textarea { height: 75px;}
 
 form input#rule_word {width: 100%;}
 

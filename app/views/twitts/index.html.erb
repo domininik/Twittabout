@@ -15,9 +15,12 @@
 </div>
 <%= clear %>
 <h1><%= @all_size %> tweetów napisanych po polsku</h1>
-<h2>
-  <%= link_to 'ostatnie', twitts_path %> |
-  temat: <%= link_to 'muzyka', twitts_path(:temat => 'muzyka') %>
+<h2 class="twitt_menu">
+  przeczytaj <%= link_to 'najnowsze', twitts_path %>
+  lub wybierz temat: <%= link_to 'muzyka', twitts_path(:temat => 'muzyka') %>
+  <%= link_to 'design', twitts_path(:temat => 'design') %>
+  <%= link_to 'sport', twitts_path(:temat => 'sport') %>
+  <%= link_to 'polityka', twitts_path(:temat => 'polityka') %>
 </h2>
 <hr />
 <%= render :partial => "shared/twitt", :collection => @twitts %>

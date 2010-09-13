@@ -1,5 +1,5 @@
 <div class="rule">
-	<h3><%= rule.category %></h3>
+	<h1><%= rule.category %></h1>
 	<p>
 	  <b><%=h rule.word_weight %> - Word:</b> 
 	  <%=h rule.word %>
@@ -33,6 +33,11 @@
 	<p>
 	  <b><%=h rule.destination_weight %> - Destination:</b>
 	  <%=h rule.destination %>
+	</p>
+	<hr />
+	<p>
+	  <b>Filter:</b>
+	  <%=h rule.filter %>
 	</p>
 	<p>
 		<b><%= rule.total_weight %> - Total</b>

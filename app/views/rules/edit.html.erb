@@ -8,7 +8,7 @@
     <%= f.text_field :word %>
   </p>
   <p>
-    <%= f.label :word_weight %><br />
+    <%= f.label :word_weight %>
     <%= f.text_field :word_weight %>
   </p>
   <p>
@@ -16,7 +16,7 @@
     <%= f.text_area :synonymy %>
   </p>
   <p>
-    <%= f.label :synonymy_weight %><br />
+    <%= f.label :synonymy_weight %>
     <%= f.text_field :synonymy_weight %>
   </p>
   <p>
@@ -24,7 +24,7 @@
     <%= f.text_area :is_a %>
   </p>
   <p>
-    <%= f.label :is_a_weight %><br />
+    <%= f.label :is_a_weight %>
     <%= f.text_field :is_a_weight %>
   </p>
   <p>
@@ -32,7 +32,7 @@
     <%= f.text_area :similar_to %>
   </p>
   <p>
-    <%= f.label :similar_to_weight %><br />
+    <%= f.label :similar_to_weight %>
     <%= f.text_field :similar_to_weight %>
   </p>
   <p>
@@ -40,7 +40,7 @@
     <%= f.text_area :is_a_part_of %>
   </p>
   <p>
-    <%= f.label :is_a_part_of_weight %><br />
+    <%= f.label :is_a_part_of_weight %>
     <%= f.text_field :is_a_part_of_weight %>
   </p>
   <p>
@@ -48,7 +48,7 @@
     <%= f.text_area :consists_of %>
   </p>
   <p>
-    <%= f.label :consists_of_weight %><br />
+    <%= f.label :consists_of_weight %>
     <%= f.text_field :consists_of_weight %>
   </p>
   <p>
@@ -56,9 +56,14 @@
     <%= f.text_area :destination %>
   </p>
   <p>
-    <%= f.label :destination_weight %><br />
+    <%= f.label :destination_weight %>
     <%= f.text_field :destination_weight %>
   </p>
+  <p>
+    <%= f.label :filter %><br />
+    <%= f.text_area :filter %>
+  </p>
+  <hr />
   <p>
     <%= f.submit 'Update' %>
   </p>

@@ -138,42 +138,6 @@ class SamplesController < ApplicationController
     end
   end
   
-  # Category Distance Method
-  def analyze_c
-    @sample = Sample.find(params[:sample_id])
-    @test_ngrams = @sample.ngram
-    @music_sample = Sample.find_by_category("Music")
-    #@design_sample = Sample.find_by_category("Design")
-    @sport_sample = Sample.find_by_category("Sport")
-    #@politics_sample = Sample.find_by_category("Politics")
-    
-    if @test_ngrams == [] or @test_ngrams.nil?
-      flash[:error] = "You have to generate N-grams first"
-      redirect_to(@sample)
-    elsif @sport_sample.nil? or @music_sample.nil? #or @politics_sample.nil? or @design_sample.nil?
-      flash[:error] = "You have to generate samples for all categories first!"
-      redirect_to(samples_path)
-    else
-      @music_ngrams = @music_sample.ngram
-      #@design_ngrams = @design_sample.ngram
-      @sport_ngrams = @sport_sample.ngram
-      #@politics_ngrams = @politics_sample.ngram
-      
-      if false #TODO 
-        flash[:error] = "Please, generate all N-grams first"
-        #redirect_to sample_ngram_path(@pol_sample)
-      else
-        @max_distance = params[:max_distance].to_i
-      
-        sport_counter = measure_distance(@test_ngrams, @sport_ngrams, @max_distance)
-        music_counter = measure_distance(@test_ngrams, @music_ngrams, @max_distance)
-
-        flash[:notice] = "sport: #{sport_counter}, music: #{music_counter}"
-        redirect_to(@sample)
-      end    
-    end
-  end
-  
   # Language Density Method
   def analyze_b
     @sample = Sample.find(params[:sample_id])
@@ -205,45 +169,6 @@ class SamplesController < ApplicationController
         end
         redirect_to(@sample)
       end     
-    end
-  end
-  
-  # Category Density Method
-  def analyze_d
-    @sample = Sample.find(params[:sample_id])
-    @test_ngrams = @sample.ngram
-    @music_sample = Sample.find_by_category("Music")
-    #@design_sample = Sample.find_by_category("Design")
-    @sport_sample = Sample.find_by_category("Sport")
-    #@politics_sample = Sample.find_by_category("Politics")
-    
-    if @test_ngrams == [] or @test_ngrams.nil?
-      flash[:error] = "You have to generate N-grams first"
-      redirect_to(@sample)
-    elsif @sport_sample.nil? or @music_sample.nil? #or @politics_sample.nil? or @design_sample.nil?
-      flash[:error] = "You have to generate samples for all categories first!"
-      redirect_to(samples_path)
-    else
-      @music_ngrams = @music_sample.ngram
-      #@design_ngrams = @design_sample.ngram
-      @sport_ngrams = @sport_sample.ngram
-      #@politics_ngrams = @politics_sample.ngram
-      
-      if false #@pol_ngrams == [] or @pol_ngrams.nil?
-        flash[:error] = "Please, generate all N-grams first"
-        #redirect_to sample_ngram_path(@pol_sample)
-      else
-        test_ngrams = @test_ngrams.body.split(/[\d]* - /)
-        music_ngrams = @music_ngrams.body.split(/[\d]* - /)
-        sport_ngrams = @sport_ngrams.body.split(/[\d]* - /)
-        
-        density1 = measure_density(test_ngrams, music_ngrams)
-        density2 = measure_density(test_ngrams, sport_ngrams)
-
-        flash[:notice] = "Density for music: #{density1}, density for sport: #{density2}"
-
-        redirect_to(@sample)
-      end  
     end
   end
   
