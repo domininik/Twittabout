@@ -1,5 +1,6 @@
+<% if params[:q] %><p class="warning">Czy na pewno chodziło Ci o <%=params[:q]%>?</p><% end %>
 <div class="users left">
-	<h1><%= @users.size %> polskich użytkowników</h1>
+	<h1 class="header"><%= @users.size %> polskich użytkowników</h1>
 	<hr />
 	<h3 class="twitt_menu">
 		<%= link_to 'alfabetycznie', twitter_users_path %> |
@@ -9,6 +10,7 @@
 	<% if current_user %>
 	  <% form_tag(:action => :update_all) do %>
 	    <%= submit_tag 'uaktualnij wszystkich' %>
+	    <!-- TODO wyszukaj nowych (jesli twitt zaczyna sie od "@")-->
 	  <% end %>
 	<% end %>
 	<hr />
@@ -16,6 +18,7 @@
 </div>
 <div class="top_users">
 	<h3>wpisz nazwę użytkownika:</h3>
+	<!-- TODO more sophisticated search -->
 	<div class="search">
 		<% form_tag(:action => :search) do %>
 		  <%= text_field_tag 'q' %>

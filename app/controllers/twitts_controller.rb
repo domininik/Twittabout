@@ -22,6 +22,7 @@ class TwittsController < ApplicationController
 
   def feed
     url = params[:url]
+    # TODO what if user is protected or API is down?
     json = Net::HTTP.get_response(URI.parse(url)).body
     data = ActiveSupport::JSON.decode(json)
     data.each do |ele|

@@ -77,8 +77,8 @@ hr {color: #fff;}
 #header_menu {}
 
 #main_menu {
-  font-family: Georgia, Times, serif;
-	padding-top: 32px;
+	font-family: Helvetica, Arial, sans-serif;
+ 	padding-top: 36px;
 	font-size: 30px;
 	float: right;
 }
@@ -115,10 +115,20 @@ div#banner h2 {
   margin:0;
   font-family: Helvetica, Arial, sans-serif;
   font-weight: normal;
+  color: #18344F;
 }
 
-a { 
-  color: #18344F; 
+h1.header {
+	text-align: center;
+	font-size: 30px;
+	color: #18344F;
+	line-height: 32px;
+}
+
+h1.header a {color: #18344F; text-decoration: none;}
+
+a {  
+	color: #1f4974;
   text-shadow: none;
 }
 
@@ -213,7 +223,7 @@ span.author {
 	float: left;
 }
 
-p.notice, p.error {
+p.notice, p.error, p.warning {
 	font-family: Georgia, Times, serif;
 	font-size: 24px;
 	text-align: center;
@@ -224,6 +234,7 @@ p.notice, p.error {
 
 p.notice { color: #33cc66; border: 1px solid #33cc66;}
 p.error { color: #cc3333; border: 1px solid #cc3333;}
+p.warning { color: #1f4974; border: 1px solid #1f4974; margin-top: 5px;}
 
 div#icon {
 	float: right;

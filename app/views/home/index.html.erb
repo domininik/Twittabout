@@ -1,10 +1,9 @@
 <div id="home">
 	<div class="home_twitts">
-		<h2><%= @all_size %> tweetów napisanych po polsku</h2>
+		<h1 class="header"><%= link_to "#{@all_size} tweetów napisanych po polsku", twitts_path %></h1>
 		<hr />
 		<h3 class="twitt_menu">
-		  przeczytaj <%= link_to 'najnowsze', root_path %><br />
-		  lub wybierz temat: <%= link_to 'muzyka', root_path(:temat => 'muzyka') %>
+		  wybierz temat: <%= link_to 'muzyka', root_path(:temat => 'muzyka') %>
 		  <%= link_to 'design', root_path(:temat => 'design') %>
 		  <%= link_to 'sport', root_path(:temat => 'sport') %>
 		  <%= link_to 'polityka', root_path(:temat => 'polityka') %>
@@ -14,7 +13,7 @@
 		<%= will_paginate @twitts, :previous_label => '« wstecz', :next_label => 'dalej »' %>
 	</div>
 	<div class="top_users">
-		<h2><%= @all_users_size %> polskich użytkowników</h2>
+		<h1 class="header"><%= link_to "#{@all_users_size} polskich użytkowników", twitter_users_path %></h1>
 		<hr />
 		<h3 class="twitt_menu">
 		  <div class="left"><%= link_to 'najpopularniejsi', twitter_users_path(:sort => 'najpopularniejsi') %></div>

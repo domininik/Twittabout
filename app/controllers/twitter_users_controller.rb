@@ -73,7 +73,7 @@ class TwitterUsersController < ApplicationController
       redirect_to twitter_user_url(@user)
     else
       flash[:error] = "Nie znaleziono takiego użytkownika"
-      redirect_to twitter_users_path
+      redirect_to twitter_users_path(:q => params[:q])
     end
   end
   
