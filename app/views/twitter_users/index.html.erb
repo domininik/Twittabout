@@ -1,6 +1,7 @@
 <div class="users left">
 	<h1><%= @users.size %> polskich użytkowników</h1>
-	<h3>
+	<hr />
+	<h3 class="twitt_menu">
 		<%= link_to 'alfabetycznie', twitter_users_path %> |
 		<%= link_to 'najpopularniejsi', twitter_users_path(:sort => 'najpopularniejsi') %> |
 		<%= link_to 'najbardziej aktywni', twitter_users_path(:sort => 'najbardziej_aktywni') %>

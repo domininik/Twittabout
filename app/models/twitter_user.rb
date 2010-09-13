@@ -35,7 +35,7 @@ class TwitterUser < ActiveRecord::Base
         puts content
         text = preprocess(content)
 
-        if content.length.to_f / text.length.to_f < 2.0
+        #if content.length.to_f / text.length.to_f < 2.0
           if check_if_polish(text)        
             twitt = Twitt.new
             twitt.body = content
@@ -45,7 +45,7 @@ class TwitterUser < ActiveRecord::Base
             twitt.twitter_user_id = self.id
             twitt.save
           end
-        end
+        #end
       end
     end
   end

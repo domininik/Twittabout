@@ -29,7 +29,7 @@ class TwittsController < ApplicationController
       puts content
       text = preprocess(content)
 
-      if content.length.to_f / text.length.to_f < 2.0
+      #if content.length.to_f / text.length.to_f < 2.0
         if check_if_polish(text)
           profile_id = ele['user']['id']
           user ||= TwitterUser.find_by_profile_id(profile_id)
@@ -56,7 +56,7 @@ class TwittsController < ApplicationController
           twitt.twitter_user_id = user.id
           twitt.save
         end
-      end
+      #end
     end
    
     respond_to do |format|

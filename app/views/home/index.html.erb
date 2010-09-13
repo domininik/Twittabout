@@ -1,6 +1,7 @@
 <div id="home">
 	<div class="home_twitts">
 		<h2><%= @all_size %> tweetów napisanych po polsku</h2>
+		<hr />
 		<h3 class="twitt_menu">
 		  przeczytaj <%= link_to 'najnowsze', root_path %><br />
 		  lub wybierz temat: <%= link_to 'muzyka', root_path(:temat => 'muzyka') %>
@@ -8,15 +9,19 @@
 		  <%= link_to 'sport', root_path(:temat => 'sport') %>
 		  <%= link_to 'polityka', root_path(:temat => 'polityka') %>
 		</h3>
+		<hr />
 		<%= render :partial => "shared/twitt", :collection => @twitts %>
 		<%= will_paginate @twitts, :previous_label => '« wstecz', :next_label => 'dalej »' %>
 	</div>
 	<div class="top_users">
 		<h2><%= @all_users_size %> polskich użytkowników</h2>
-		<h3>
-		  <%= link_to 'najpopularniejsi', twitter_users_path(:sort => 'najpopularniejsi') %> |
-		  <%= link_to 'wszyscy', twitter_users_path %>
+		<hr />
+		<h3 class="twitt_menu">
+		  <div class="left"><%= link_to 'najpopularniejsi', twitter_users_path(:sort => 'najpopularniejsi') %></div>
+		  <div class="right"><%= link_to 'wszyscy', twitter_users_path %></div>
+		  <%= clear %>
 		</h3>
+		<hr />
 		<%= render :partial => 'shared/user', :collection => @users %>
 		<p><%= link_to 'zobacz wszystkich', twitter_users_path %></p>
     <h3><%= link_to 'Polski Twitter (Twittabout)', twitter_user_path(@me) %></h3>

@@ -21,7 +21,11 @@ h2.name {
   font-family: Helvetica, Arial, sans-serif;
 }
 
-h2.twitt_menu a, h3.twitt_menu a { margin: 0 15px; }
+h2.twitt_menu a, h3.twitt_menu a { 
+	margin: 0 10px;
+	padding: 3px;
+	background-color: #fff;
+}
 
 #content, .content {
 	width: 900px;
