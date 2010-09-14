@@ -1,6 +1,5 @@
 class TwitterUsersController < ApplicationController
   before_filter :require_user, :except => [:index, :show, :search]
-  include NLP
   
   def index
     get_top_users
@@ -48,48 +47,12 @@ class TwitterUsersController < ApplicationController
   # TODO make auto_update
   def update_all
     TwitterUser.all.each { |user| user.update_data }
-    
-    respond_to do |format|
-      format.html { 
-        flash[:notice] = "Uaktualniono wszystkich użytkowników"
-        redirect_to(twitter_users_path) 
-      }
-      format.xml  { head :ok }
-    end
+    flash[:notice] = "Uaktualniono wszystkich użytkowników"
+    redirect_to(twitter_users_path) 
   end
   
   def search_new
-    TwitterUser.all.each do |user|
-      friends_url = "http://api.twitter.com/1/statuses/friends.json?user_id=#{user.profile_id}"
-      followers_url = "http://api.twitter.com/1/statuses/followers.json?user_id=#{user.profile_id}"
-      
-      response = Net::HTTP.get_response(URI.parse(friends_url))
-      json = response.body
-      data = ActiveSupport::JSON.decode(json)
-      if response.message == "OK"
-        data.each do |ele|
-          text = preprocess(ele['status']['text']) if ele['status'] 
-          if text and check_if_polish(text)
-            id = ele['id']
-            user = TwitterUser.find_by_profile_id(id)
-            unless user
-              user = TwitterUser.new
-              user.profile_id = id
-              user.name = ele['name']
-              user.profile_image_url = ele['profile_image_url']
-              user.url = ele['url']
-              user.description = ele["description"]
-              user.listed_count = ele['listed_count']
-              user.followers_count = ele['followers_count']
-              user.friends_count = ele['friends_count']
-              user.statuses_count = ele['statuses_count']
-              user.screen_name = ele['screen_name']
-              user.save
-            end
-          end
-        end
-      end
-    end
+    TwitterUser.all.each { |user| user.fetch_new_users }      
     flash[:notice] = "Wyszukano nowych użytkowników"    
     redirect_to(twitter_users_path) 
   end
