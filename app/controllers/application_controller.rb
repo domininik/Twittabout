@@ -11,7 +11,6 @@ class ApplicationController < ActionController::Base
   helper_method :current_user_session, :current_user
 
   def get_twitts
-    @all_size = Twitt.all.size
     if cat = params[:temat]
       @twitts = Twitt.paginate :page => params[:page], :per_page => 10, :conditions => "category = '#{cat}'", :order => "originally_created DESC"
     else

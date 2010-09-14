@@ -14,4 +14,17 @@ module ApplicationHelper
     text = text.gsub(regex, '<a href="\0">\0</a>')
     return text
   end
+  
+  def twitt_size
+    size = Twitt.all.size
+    last = size.to_s[-1,1]
+    suffix = case last
+    when '0','1','5','6','7','8','9'
+      " twittów napisanych"
+    when '2','3','4'
+      " twitty napisane"
+    else
+    end
+    return size.to_s + suffix
+  end
 end
