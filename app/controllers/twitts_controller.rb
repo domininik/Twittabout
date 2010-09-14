@@ -39,7 +39,6 @@ class TwittsController < ApplicationController
             profile_id = ele['user']['id']
             user ||= TwitterUser.find_by_profile_id(profile_id)
             unless user
-              # TODO try to fetch user friends
               user = TwitterUser.new
               user.name = ele['user']['name']
               user.screen_name = ele['user']['screen_name']

@@ -6,7 +6,6 @@
 	</div>
 	<div class="twitt_body left">
 		<p><b><%= link_to twitt.twitter_user.screen_name, twitter_user_path(twitt.twitter_user) %></b></p>
-		<!-- TODO link to use if starts with @ -->
     <p><%= links_format(twitt.body) %></p>
     <span class="left twitt_info">
       <%= twitt.originally_created.strftime("%H:%M %d.%m.%Y") %> przez <%= source(twitt) %>
