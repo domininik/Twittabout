@@ -1,3 +1,4 @@
+<% if twitter_user %>
 <div class="user">
 	<div class="info">
 		<div class="avatar left">
@@ -20,3 +21,4 @@
   <p><%= links_format(twitter_user.latest_tweet.body) %></p>
 </div>
 <hr />
+<% end %>
