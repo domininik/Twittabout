@@ -27,7 +27,10 @@ h2.twitt_menu a, h3.twitt_menu a {
 	margin: 0 10px;
 	padding: 3px;
 	background-color: #fff;
+	text-decoration: none;
 }
+
+h2.twitt_menu a:hover, h3.twitt_menu a:hover { text-decoration: underline;}
 
 #content, .content {
 	width: 900px;
@@ -80,12 +83,26 @@ hr {color: #fff;}
 
 #main_menu {
 	font-family: Helvetica, Arial, sans-serif;
- 	padding-top: 36px;
+ 	padding-top: 20px;
 	font-size: 30px;
 	float: right;
+	margin-right: 30px;
 }
 
-#main_menu a { margin-right: 70px;}
+#main_menu div {
+	margin:0 20px;
+}
+
+#main_menu a { text-decoration: none;}
+
+.button {
+	border: 2px solid #fff;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	padding: 10px;
+	background-color: #18344F;
+}
 
 #admin_menu { 
   float:right;
