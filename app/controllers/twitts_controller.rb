@@ -23,10 +23,11 @@ class TwittsController < ApplicationController
   # TODO make autofeed
   def feed
     url = params[:url]
-    json = Net::HTTP.get_response(URI.parse(url)).body
+    response = Net::HTTP.get_response(URI.parse(url))
+    json = response.body
     data = ActiveSupport::JSON.decode(json)
-    if error = data["error"]
-      flash[:error] = "Wystąpił błąd: #{error}"
+    if response.message != "OK"
+      flash[:error] = "Wystąpił błąd: #{data["error"]}"
     else
       data.each do |ele|
         content = ele['text']
