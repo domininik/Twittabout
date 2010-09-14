@@ -23,9 +23,9 @@
 		<hr />
 		<%= render :partial => 'shared/user', :collection => @users %>
 		<p><%= link_to 'zobacz wszystkich', twitter_users_path %></p>
-    <h3><%= link_to 'Polski Twitter (Twittabout)', twitter_user_path(@me) %></h3>
+    <h3><%= link_to 'Polski Twitter (Twittabout)', twitter_user_path(@me) if @me %></h3>
     <%= render :partial => 'my_twitt', :collection => @my_twitts %>
-    <%= link_to 'zobacz wszystkie', twitter_user_path(@me) %>
+    <%= link_to 'zobacz wszystkie', twitter_user_path(@me) if @me %>
 	</div>
 	<%= clear %>
 </div>
