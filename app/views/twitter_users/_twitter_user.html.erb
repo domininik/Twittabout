@@ -18,7 +18,7 @@
 	  </div>
 	  <%= clear %>
   </div>
-  <p><%= links_format(twitter_user.latest_tweet.body) %></p>
+  <p><%= links_format(twitter_user.latest_tweet.body) if twitter_user.latest_tweet %></p>
 </div>
 <hr />
 <% end %>

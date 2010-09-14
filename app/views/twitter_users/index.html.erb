@@ -8,10 +8,17 @@
 		<%= link_to 'najbardziej aktywni', twitter_users_path(:sort => 'najbardziej_aktywni') %>
 	</h3>
 	<% if current_user %>
-	  <% form_tag(:action => :update_all) do %>
-	    <%= submit_tag 'uaktualnij wszystkich' %>
-	    <!-- TODO wyszukaj nowych (jesli twitt zaczyna sie od "@")-->
-	  <% end %>
+	  <div class="left">
+  	  <% form_tag(:action => :update_all) do %>
+  	    <%= submit_tag 'uaktualnij wszystkich' %>
+  	  <% end %>
+	  </div>
+	  <div class="left">
+  	  <% form_tag(:action => :search_new) do %>
+  	    <%= submit_tag 'wyszukaj nowych' %>
+  	  <% end %>
+	  </div>
+	  <%= clear %>
 	<% end %>
 	<hr />
 	<%= render :partial => @users %>
