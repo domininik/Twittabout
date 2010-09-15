@@ -117,7 +117,8 @@ hr {color: #fff;}
 #logo h1 { 
   float: left; 
   font-size: 48px;
-  padding-top: 25px;
+  line-height: 58px;
+  padding-top: 10px;
 }
 
 #logo h1 a {text-decoration: none;}
