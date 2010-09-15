@@ -113,7 +113,7 @@ hr {color: #fff;}
 #admin_menu a { text-decoration: none;}
 
 #logo { float:left; }
-#logo img { float:left; }
+#logo img { float:left; border: none;}
 #logo h1 { 
   float: left; 
   font-size: 48px;

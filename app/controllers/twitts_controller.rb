@@ -78,5 +78,5 @@ class TwittsController < ApplicationController
       }
     end
   end
-
+  
 end

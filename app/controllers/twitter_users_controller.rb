@@ -57,7 +57,7 @@ class TwitterUsersController < ApplicationController
     redirect_to(twitter_users_path) 
   end
 
-  def delete
+  def destroy
     @user = TwitterUser.find(params[:id])
     @user.destroy
 
