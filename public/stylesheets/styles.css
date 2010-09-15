@@ -364,7 +364,7 @@ form input#rule_word {width: 100%;}
 input#url { width: 450px; }
 
 div.avatar { margin-right: 10px; width: 50px; height: 50px;}
-div.avatar img { border: 1px solid #fff; }
+div.avatar img { border: 1px solid #fff; width: 50px; height: 50px;}
 
 .twitt_info, .twitt_info a { font-size: 13px; color: #446677;}
 
@@ -422,5 +422,6 @@ div#info p {
 	font-size: 18px;
 }
 
+div.user_details { width: 540px;}
 
 

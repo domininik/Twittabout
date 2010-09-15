@@ -3,14 +3,15 @@ class TwitterUsersController < ApplicationController
   
   def index
     get_top_users
+    @all ||= TwitterUser.all.size
     @title = 'Polscy Użytkownicy Twittera'
     case sort = params[:sort]
     when 'najbardziej_aktywni'
-      @users = TwitterUser.all(:order => "statuses_count DESC")
+      @users = TwitterUser.paginate :order => "statuses_count DESC", :page => params[:page], :per_page => 15
     when 'najpopularniejsi'
-      @users = TwitterUser.all(:order => "followers_count DESC")
+      @users = TwitterUser.paginate :order => "followers_count DESC", :page => params[:page], :per_page => 15
     else
-      @users = TwitterUser.all(:order => "screen_name ASC")
+      @users = TwitterUser.paginate :order => "screen_name ASC", :page => params[:page], :per_page => 15
     end
   
     respond_to do |format|

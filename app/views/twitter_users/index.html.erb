@@ -1,6 +1,6 @@
 <% if params[:q] %><p class="warning">Czy na pewno chodziło Ci o <%=params[:q]%>?</p><% end %>
 <div class="users left">
-	<h1 class="header"><%= @users.size %> polskich użytkowników</h1>
+	<h1 class="header"><%= @all %> polskich użytkowników</h1>
 	<hr />
 	<h3 class="twitt_menu">
 		<%= link_to 'alfabetycznie', twitter_users_path %> |
@@ -22,6 +22,8 @@
 	<% end %>
 	<hr />
 	<%= render :partial => @users %>
+	<%= will_paginate @users, :previous_label => '« wstecz', :next_label => 'dalej »' %>
+  
 </div>
 <div class="top_users">
 	<h3>wpisz nazwę użytkownika:</h3>
