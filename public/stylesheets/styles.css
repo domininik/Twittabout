@@ -66,7 +66,7 @@ hr {color: #fff;}
 }
 
 #footer span {
-  margin-left: 10px;
+  margin-right: 30px;
 }
 
 #footer span, #footer a { 
@@ -338,7 +338,7 @@ p.time {
 
 #footer_info { 
   font-size: 14px;
-  float: left;
+  float: right;
   padding-top: 20px;
 }
 
@@ -415,6 +415,12 @@ div.info {
   padding-left: 5px;
 }
 
+div#info {margin-left: 50px;}
+
+div#info p {
+	line-height: 32px;
+	font-size: 18px;
+}
 
 
 

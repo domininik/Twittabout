@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @title = ""
+    @title = "Tweety napisane po polsku"
     get_twitts
     @me ||= TwitterUser.find_by_profile_id(104234338)
     @my_twitts ||= Twitt.all(:conditions => "twitter_user_id = #{@me.id}", :order => "originally_created DESC", :limit => 3) if @me
@@ -11,4 +11,6 @@ class HomeController < ApplicationController
     end
   end
 
+  def info
+  end
 end

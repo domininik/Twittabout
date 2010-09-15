@@ -3,6 +3,7 @@ class TwittsController < ApplicationController
   include NLP
 
   def index
+    @title = "Tweety napisane po polsku"
     get_twitts
 
     respond_to do |format|
