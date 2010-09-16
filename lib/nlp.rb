@@ -5,6 +5,7 @@ module NLP
     text = text.lstrip
     text = text.downcase
     text = text.gsub(/http:\/\/[^ ]*/,'')
+    text = text.gsub(/@[^ ]*/,'')
     text = text.gsub(/[^a-ząęóśźćżłń ]/,' ')
     text = text.gsub(/[' ']+/,'_')
     return text
