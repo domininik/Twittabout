@@ -60,7 +60,7 @@ module NLP
   end
   
   def check_if_polish(text) 
-    if text != '' and text != '_' and text.size > 2
+    if text != '' and text != '_' and text.size > 3
       ngrams = create_ngrams(text, 3)
       test_ngrams = []
 
