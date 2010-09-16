@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(:version => 20100913151146) do
   end
 
   create_table "ngrams", :force => true do |t|
-    t.text     "body",       :limit => 16777215
+    t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "sample_id"

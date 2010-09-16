@@ -352,7 +352,7 @@ p.right, h2.right { text-align: right; }
 span#info { margin-left: 45px; }
 
 .grey { 
-  background-color: #ccccff;	
+  background-color: #CFE0FF;	
 }
 
 textarea { width: 100%; }
@@ -410,7 +410,7 @@ div.pagination a, div.pagination span { margin-right: 5px; }
 
 div.info {
   width: 595px;
-  background-color: #DFDFFF;
+  background-color: #DFEBFF;
   padding-top: 5px;
   padding-left: 5px;
 }
