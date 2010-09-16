@@ -6,6 +6,8 @@ module NLP
     text = text.downcase
     text = text.gsub(/http:\/\/[^ ]*/,'')
     text = text.gsub(/@[^ ]*/,'')
+    text = text.gsub(/^rt /,'')        
+    text = text.gsub(/ rt /,'')    
     text = text.gsub(/[^a-ząęóśźćżłń ]/,' ')
     text = text.gsub(/[' ']+/,'_')
     return text
