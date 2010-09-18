@@ -8,7 +8,7 @@ module NLP
     text = text.gsub(/@[^ ]*/,'')
     text = text.gsub(/^rt /,'')        
     text = text.gsub(/ rt /,'')    
-    text = text.gsub(/[^a-ząęóśźćżłń ]/,' ')
+    text = text.gsub(/[^\w ]/,' ')
     text = text.gsub(/[' ']+/,'_')
     return text
   end
@@ -16,14 +16,6 @@ module NLP
   def create_ngrams(text, max)
     table = text.split(//)
     @ngrams = {}
-
-    table.each do |ele|
-      if @ngrams[ele]
-        @ngrams[ele] += 1
-      else
-        @ngrams[ele] = 1
-      end
-    end
       
     max -= 1
     (1..max).each { |i| slice(table, 0, i) }
