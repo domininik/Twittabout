@@ -37,17 +37,15 @@ class TwitterUser < ActiveRecord::Base
           puts content
           text = preprocess(content)
 
-          #if content.length.to_f / text.length.to_f < 2.0
-            if check_if_polish(text)        
-              twitt = Twitt.new
-              twitt.body = content
-              twitt.originally_created = ele['created_at'].to_datetime
-              twitt.twitt_id = ele['id']
-              twitt.source = ele['source']
-              twitt.twitter_user_id = self.id
-              twitt.save
-            end
-          #end
+          if check_if_polish(text)        
+            twitt = Twitt.new
+            twitt.body = content
+            twitt.originally_created = ele['created_at'].to_datetime
+            twitt.twitt_id = ele['id']
+            twitt.source = ele['source']
+            twitt.twitter_user_id = self.id
+            twitt.save
+          end
         end
       end
     end
