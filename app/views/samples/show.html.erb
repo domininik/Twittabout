@@ -11,19 +11,19 @@
 <%= link_to 'Back', samples_path %>
 <hr />
 <h2>Analyze language:</h2>
-<h3>I. Distance method</h3>
+<h3>I. Density method</h3>
+<p>
+  <% form_tag( :action => :analyze_b) do %>
+    <%= hidden_field_tag "sample_id", @sample.id %>
+    <%= submit_tag('Analyze') %>
+  <% end %>
+</p>
+<h3>II. Distance method</h3>
 <p>
   <% form_tag( :action => :analyze_a) do %>
     <%= hidden_field_tag "sample_id", @sample.id %>
     Max distance: <%= text_field_tag "max_distance", "4000" %>
     <br />
-    <%= submit_tag('Analyze') %>
-  <% end %>
-</p>
-<h3>II. Density method</h3>
-<p>
-  <% form_tag( :action => :analyze_b) do %>
-    <%= hidden_field_tag "sample_id", @sample.id %>
     <%= submit_tag('Analyze') %>
   <% end %>
 </p>
