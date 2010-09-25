@@ -32,7 +32,7 @@ class TwittsController < ApplicationController
     else
       data.each do |ele|
         content = ele['text']
-        logger.debug content
+        logger.info content
         text = preprocess(content)
 
         if check_if_polish(text)

@@ -64,7 +64,7 @@ module NLP
       pol_ngrams ||= pol_sample.ngram.body.split(/[\d]* - /)
 
       density = measure_density(test_ngrams, pol_ngrams)
-      logger.debug "Density: #{density}"
+      logger.info "Density: #{density}"
       density > Density ? true : false
     else
       return false
