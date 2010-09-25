@@ -34,7 +34,7 @@ class TwitterUser < ActiveRecord::Base
       
         unless twitt
           content = ele['text']
-          puts content
+          logger.debug content
           text = preprocess(content)
 
           if check_if_polish(text)        
@@ -48,6 +48,8 @@ class TwitterUser < ActiveRecord::Base
           end
         end
       end
+    else
+      logger.warn "user timeline error - user_id: #{self.profile_id}"
     end
   end
   
