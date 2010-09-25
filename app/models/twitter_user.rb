@@ -13,7 +13,7 @@ class TwitterUser < ActiveRecord::Base
   def update_data
     url = "http://api.twitter.com/1/statuses/user_timeline.json?user_id=#{self.profile_id}"
     response = Net::HTTP.get_response(URI.parse(url))
-    logger.debug "user: #{self.profile_id} | response message: #{response.message}"
+    logger.debug "user: #{self.screen_name} id: #{self.profile_id} | response message: #{response.message}"
     
     if response.message == "OK"
       json = response.body
@@ -49,8 +49,6 @@ class TwitterUser < ActiveRecord::Base
           end
         end
       end
-    else
-      logger.warn "user timeline error - user_id: #{self.profile_id}"
     end
   end
   
