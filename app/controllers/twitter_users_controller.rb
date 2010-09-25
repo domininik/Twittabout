@@ -47,13 +47,13 @@ class TwitterUsersController < ApplicationController
   
   # TODO make auto_update
   def update_all
-    TwitterUser.all.each { |user| user.update_data }
-    flash[:notice] = "Uaktualniono wszystkich użytkowników"
+    TwitterUser.all(:order => "RAND()").each { |user| user.update_data }
+    flash[:notice] = "Uaktualniono użytkowników"
     redirect_to(twitter_users_path) 
   end
   
   def search_new
-    TwitterUser.all.each { |user| user.fetch_new_users }      
+    TwitterUser.all(:order => "RAND()").each { |user| user.fetch_new_users }
     flash[:notice] = "Wyszukano nowych użytkowników"    
     redirect_to(twitter_users_path) 
   end
