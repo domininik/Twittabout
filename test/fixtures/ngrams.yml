@@ -2,8 +2,6 @@
 
 one:
   body: MyString
-  count: 1
 
 two:
   body: MyString
-  count: 1
