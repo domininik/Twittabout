@@ -1,5 +1,4 @@
 module NLP
-  Density = 0.89
   
   def preprocess(text)
     text = text.lstrip
@@ -65,7 +64,8 @@ module NLP
 
       density = measure_density(test_ngrams, pol_ngrams)
       logger.info "Density: #{density}"
-      density > Density ? true : false
+      value ||= Setting.find_by_name("density").value
+      density > value ? true : false
     else
       return false
     end

@@ -19,6 +19,7 @@
 		    <div id="admin_menu">
 			    &nbsp;
 				  <% if current_user %>
+				    <%= link_to "ustawienia", settings_path %> |
 			      <%= link_to "sample", samples_path %> |
 			      <%= link_to "reguły", rules_path %> |
 		        <%= link_to "dodaj admina", new_user_path %> |

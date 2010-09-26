@@ -161,8 +161,8 @@ class SamplesController < ApplicationController
         lang_ngrams = @pol_ngrams.body.split(/[\d]* - /)
         
         density = measure_density(test_ngrams, lang_ngrams)
-        
-        if density > Density 
+        value ||= Setting.find_by_name("density").value
+        if density > value 
           flash[:notice] = "Density: #{density} | Text in Polish"
         else
           flash[:notice] = "Density: #{density} | Text not in Polish"

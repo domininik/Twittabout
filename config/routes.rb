@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :settings
+
   map.resources :rules
 
   map.resources :samples, :has_one => :ngram
