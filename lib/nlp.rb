@@ -93,8 +93,9 @@ module NLP
         end
       end
     end
-    if total['muzyka'] and total['muzyka'] > 0
-      self.update_attribute(:category, 'muzyka')
+    best = total.invert.sort.last
+    if best[0] > 0
+      self.update_attribute(:category, best[1])
     else
       self.update_attribute(:category, nil)
     end

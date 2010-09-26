@@ -2,6 +2,10 @@
 
 <% form_for(@rule) do |f| %>
   <%= f.error_messages %>
+  <p>
+    <%= f.label :category %><br />
+    <%= f.text_field :category %>
+  </p>
 
   <p>
     <%= f.label :word %><br />
