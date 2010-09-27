@@ -3,7 +3,8 @@
 body { 
 	color: #222;
 	text-shadow: 0px 1px 0px #fff;
-	background-color: #6699cc; 
+	/*background-color: #F0F0D9; */
+	background-color: #fff;
 }
 
 body#fluid {
@@ -60,10 +61,11 @@ hr {color: #fff;}
 	width: 100%;
 	background-color: #333;
 	background-color: #1f4974;
-	border-top: 1px solid #fff;
-	border-bottom: 1px solid #fff;
 	padding: 5px 0px;
 }
+
+#header { border-top: 1px solid #fff; border-bottom: 1px solid #18344F;}
+#footer { border-top: 2px solid #18344F; border-bottom: 1px solid #fff;}
 
 #footer span {
   margin-right: 30px;
@@ -265,7 +267,7 @@ div#icon a img {
 }
 
 .border {
-	border: 2px solid #fff;
+	border: 2px solid #bbb;
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
