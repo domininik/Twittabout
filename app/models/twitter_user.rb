@@ -70,6 +70,7 @@ class TwitterUser < ActiveRecord::Base
   
   def fetch(url)
     response = Net::HTTP.get_response(URI.parse(url))
+    logger.info "url: #{url} | response message: #{response.message}"
     json = response.body
     begin
       data = ActiveSupport::JSON.decode(json)
