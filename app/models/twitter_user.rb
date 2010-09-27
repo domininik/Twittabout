@@ -71,35 +71,40 @@ class TwitterUser < ActiveRecord::Base
   def fetch(url)
     response = Net::HTTP.get_response(URI.parse(url))
     json = response.body
-    data = ActiveSupport::JSON.decode(json)
-    unless data == []
-      if response.message == "OK"
-        data.each do |ele|
-          id = ele['id']
-          user = TwitterUser.find_by_profile_id(id)
-          unless user
-            text = preprocess(ele['status']['text']) if ele['status'] 
-            if text and check_if_polish(text)
-              user = TwitterUser.new
-              user.profile_id = id
-              user.name = ele['name']
-              user.profile_image_url = ele['profile_image_url']
-              user.url = ele['url']
-              user.description = ele["description"]
-              user.listed_count = ele['listed_count']
-              user.followers_count = ele['followers_count']
-              user.friends_count = ele['friends_count']
-              user.statuses_count = ele['statuses_count']
-              user.screen_name = ele['screen_name']
-              user.save
+    begin
+      data = ActiveSupport::JSON.decode(json)
+      unless data == []
+        if response.message == "OK"
+          data.each do |ele|
+            id = ele['id']
+            user = TwitterUser.find_by_profile_id(id)
+            unless user
+              text = preprocess(ele['status']['text']) if ele['status'] 
+              if text and check_if_polish(text)
+                user = TwitterUser.new
+                user.profile_id = id
+                user.name = ele['name']
+                user.profile_image_url = ele['profile_image_url']
+                user.url = ele['url']
+                user.description = ele["description"]
+                user.listed_count = ele['listed_count']
+                user.followers_count = ele['followers_count']
+                user.friends_count = ele['friends_count']
+                user.statuses_count = ele['statuses_count']
+                user.screen_name = ele['screen_name']
+                user.save
+              end
             end
           end
+        else
+          # response error
         end
       else
-        # response error
+        # empty data
       end
-    else
-      # empty data
+    rescue
+      # Invalide JSON string
+      logger.error "JSON error while fetching #{url}"
     end
   end
   
