@@ -59,10 +59,10 @@ class TwitterUser < ActiveRecord::Base
   end
   
   def fetch_new_users
-    friends_url = "http://api.twitter.com/1/statuses/friends.json?user_id=#{self.profile_id}"
+    #friends_url = "http://api.twitter.com/1/statuses/friends.json?user_id=#{self.profile_id}"
     followers_url = "http://api.twitter.com/1/statuses/followers.json?user_id=#{self.profile_id}"
     
-    fetch(friends_url)
+    #fetch(friends_url)
     fetch(followers_url)
   end
   
