@@ -80,7 +80,9 @@ class TwitterUser < ActiveRecord::Base
             id = ele['id']
             user = TwitterUser.find_by_profile_id(id)
             unless user
-              text = preprocess(ele['status']['text']) if ele['status'] 
+              tweet = ele['status']['text'] if ele['status']
+              logger.info tweet
+              text = preprocess(tweet)
               if text and check_if_polish(text)
                 user = TwitterUser.new
                 user.profile_id = id
