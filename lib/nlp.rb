@@ -95,7 +95,7 @@ module NLP
       end
     end
     best = total.invert.sort.last
-    if best[0] > 0
+    if best and best[0] > 0
       self.update_attribute(:category, best[1])
     else
       self.update_attribute(:category, nil)
