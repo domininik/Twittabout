@@ -6,7 +6,8 @@ module NLP
     text = text.gsub(/http:\/\/[^ ]*/,'')
     text = text.gsub(/@[^ ]*/,'')
     text = text.gsub(/^rt /,'')        
-    text = text.gsub(/ rt /,'')    
+    text = text.gsub(/ rt /,'')
+    text = text.gsub(/[0-9]/,'')        
     text = text.gsub(/[^\w ]/,' ')
     text = text.gsub(/[' ']+/,'_')
     return text
@@ -101,3 +102,4 @@ module NLP
     end
   end
 end
+
