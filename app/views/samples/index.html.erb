@@ -1,7 +1,7 @@
 <h1>Samples</h1>
 <div class="left">
-	<%= link_to 'Polish', '/samples?lang=polish' %> |
-	<%= link_to 'English', '/samples?lang=english' %>
+	<%= link_to 'Polish', samples_path(:lang => "polish") %> |
+	<%= link_to 'English', samples_path(:lang => "english") %>
 </div>
 <%= clear %>
 <%= link_to 'New sample', new_sample_path %>
