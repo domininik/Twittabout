@@ -14,8 +14,8 @@
 </div>
 <div class="user_details right">
 	napisał <%= @user.statuses_count %> tweetów | 
-  ma <%= @user.followers_count %> followerów |
-  followuje <%= @user.friends_count %> kont |
+  <%= @user.followers_count %> obserwujących |
+  obserwuje <%= @user.friends_count %> |
   jest na <%= @user.listed_count %> listach
 	<% if (url = @user.url) %><p><%= links_format(url) %></p><% end %>
 	<% if (desc = @user.description) %><p><%= desc %></p><% end %>

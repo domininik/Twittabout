@@ -8,10 +8,10 @@
 		  <b><%= link_to user.screen_name, twitter_user_path(user) %></b>
 	  </p>
     <p>
-	    ma <%= user.followers_count %> followerów |
-      followuje <%= user.friends_count %> kont
+	    <%= user.followers_count %> obserwujących |
+      obserwuje <%= user.friends_count %>
       <br />
-	    napisał <%= user.statuses_count %> tweetów | 
+	    <%= user.statuses_count %> tweetów | 
       jest na <%= user.listed_count %> listach
     </p>
   </div>
