@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+require 'rubygems'
+require 'yaml'
+require 'erb'
+
+gem 'activesupport','2.3.5'
+require 'active_support'
+require 'daemons'
+
+options = YAML.load(
+  ERB.new(
+  IO.read(
+  File.dirname(__FILE__) + "/../../config/daemons.yml"
+  )).result).with_indifferent_access
+options[:dir_mode] = options[:dir_mode].to_sym
+
+Daemons.run File.dirname(__FILE__) + '/update_user.rb', options
