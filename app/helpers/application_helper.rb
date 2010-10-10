@@ -20,9 +20,9 @@ module ApplicationHelper
     last = size.to_s[-1,1]
     suffix = case last
     when '0','1','5','6','7','8','9'
-      " twittów napisanych"
+      " tweetów napisanych"
     when '2','3','4'
-      " twitty napisane"
+      " tweety napisane"
     else
     end
     return size.to_s + suffix
