@@ -1,6 +1,6 @@
 <% if params[:q] %><p class="warning">Czy na pewno chodziło Ci o <%=params[:q]%>?</p><% end %>
 <div class="users left">
-	<h1 class="header"><%= @all %> polskich użytkowników</h1>
+	<h1 class="header"><%= total_users %> polskich użytkowników</h1>
 	<hr />
 	<h3 class="twitt_menu">
 		<%= link_to 'alfabetycznie', twitter_users_path %> |

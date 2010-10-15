@@ -3,7 +3,6 @@ class TwitterUsersController < ApplicationController
   
   def index
     get_top_users
-    @all ||= TwitterUser.all.size
     @title = 'Polscy Użytkownicy Twittera'
     case sort = params[:sort]
     when 'najbardziej_aktywni'

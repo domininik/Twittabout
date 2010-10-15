@@ -1,6 +1,6 @@
 <div id="home">
 	<div class="home_twitts">
-		<h1 class="header"><%= link_to "#{twitt_size} po polsku", twitts_path %></h1>
+		<h1 class="header"><%= link_to "#{total_tweets} po polsku", twitts_path %></h1>
 		<hr />
 		<h3 class="twitt_menu">
 		  temat: <%= link_to 'muzyka', root_path(:temat => 'muzyka') %>
@@ -13,7 +13,7 @@
 		<%= will_paginate @twitts, :previous_label => '« wstecz', :next_label => 'dalej »' %>
 	</div>
 	<div class="top_users">
-		<h1 class="header"><%= link_to "#{@all_users_size} polskich użytkowników", twitter_users_path %></h1>
+		<h1 class="header"><%= link_to "#{total_users} polskich użytkowników", twitter_users_path %></h1>
 		<hr />
 		<h3 class="twitt_menu">
 		  <div class="left"><%= link_to 'najpopularniejsi', twitter_users_path(:sort => 'najpopularniejsi') %></div>

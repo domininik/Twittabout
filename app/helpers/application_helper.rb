@@ -15,16 +15,26 @@ module ApplicationHelper
     return text
   end
   
-  def twitt_size
-    size = Twitt.all.size
-    last = size.to_s[-1,1]
-    suffix = case last
-    when '0','1','5','6','7','8','9'
-      " tweetów napisanych"
-    when '2','3','4'
-      " tweety napisane"
+  def total_tweets
+    total ||= Setting.find_by_name('total_tweets')
+    size = total.value.to_i if total
+      if size
+      last = size.to_s[-1,1]
+      suffix = case last
+      when '0','1','5','6','7','8','9'
+        " tweetów napisanych"
+      when '2','3','4'
+        " tweety napisane"
+      else
+      end
+      return size.to_s + suffix
     else
+      "0 tweetów napisanych"
     end
-    return size.to_s + suffix
+  end
+  
+  def total_users
+    total ||= Setting.find_by_name('total_users')
+    total ? total.value.to_i : 0
   end
 end
