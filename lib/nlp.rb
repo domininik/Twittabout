@@ -81,8 +81,8 @@ module NLP
       Rule.all.each do |rule|
         cat = rule.category
         if rule.filter.split(', ').include? word
-          total[cat] = 0
-        else
+          total[cat] = -1
+        elsif total[cat] != -1
           total[cat] = 0 if total[cat].nil?
           total[cat] += rule.word_weight if rule.word.split(', ').include? word
           total[cat] += rule.synonymy_weight if rule.synonymy.split(', ').include? word
