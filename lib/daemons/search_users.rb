@@ -12,5 +12,5 @@ end
 
 while $running do  
   TwitterUser.first(:order => "RAND()").fetch_new_users
-  sleep 24
+  sleep 48
 end

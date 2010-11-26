@@ -15,5 +15,5 @@ while $running do
   total = Setting.find_by_name('total_tweets')
   new_value = Twitt.all.size
   total.update_attribute(:value, new_value) if total
-  sleep 24
+  sleep 48
 end
