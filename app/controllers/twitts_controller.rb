@@ -21,7 +21,6 @@ class TwittsController < ApplicationController
     end
   end
 
-  # TODO make autofeed
   def feed
     url = params[:url]
     response = Net::HTTP.get_response(URI.parse(url))

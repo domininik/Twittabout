@@ -1,6 +1,9 @@
 class TwitterUser < ActiveRecord::Base
   has_many :twitts, :dependent => :destroy
   include NLP
+  
+  named_scope :verified, :conditions => { :polish => true }
+  named_scope :unverified, :conditions => { :polish => nil }
 
   after_create :update_total_users
   after_destroy :update_total_users
@@ -116,7 +119,7 @@ class TwitterUser < ActiveRecord::Base
   
   def update_total_users
     total = Setting.find_by_name('total_users')
-    new_value = TwitterUser.all.size
+    new_value = TwitterUser.verified.size
     total.update_attribute(:value, new_value) if total
   end
 end

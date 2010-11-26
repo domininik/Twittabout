@@ -8,14 +8,19 @@
 		<%= link_to 'najbardziej aktywni', twitter_users_path(:sort => 'najbardziej_aktywni') %>
 	</h3>
 	<% if current_user %>
-	  <div class="left">
+	  <div class="admin_button left">
   	  <% form_tag(:action => :update_all) do %>
   	    <%= submit_tag 'uaktualnij wszystkich' %>
   	  <% end %>
 	  </div>
-	  <div class="left">
+	  <div class="admin_button left">
   	  <% form_tag(:action => :search_new) do %>
   	    <%= submit_tag 'wyszukaj nowych' %>
+  	  <% end %>
+	  </div>
+	  <div class="admin_button left">
+  	  <% form_tag(:action => :verify_all) do %>
+  	    <%= submit_tag 'weryfikuj wszystkich' %>
   	  <% end %>
 	  </div>
 	  <%= clear %>

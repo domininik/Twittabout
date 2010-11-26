@@ -426,4 +426,17 @@ div#info p {
 
 div.user_details { width: 540px;}
 
+div.last_tweet { 
+	width: 480px; 
+	line-height: 14px;
+}
+
+div.admin_button {
+	margin-right: 10px;
+	border: 1px solid #cc3333;
+	padding: 5px;
+}
+
+
+
 
