@@ -14,7 +14,7 @@ class TwitterUsersController < ApplicationController
         @users = TwitterUser.verified.paginate :order => "screen_name ASC", :page => params[:page], :per_page => 15
       end
     else
-      @users = TwitterUser.unverified.paginate :order => "created_at DESC", :page => params[:page], :per_page => 15
+      @users = TwitterUser.unverified.paginate :order => "created_at DESC", :page => params[:page], :per_page => 50
     end
   
     respond_to do |format|

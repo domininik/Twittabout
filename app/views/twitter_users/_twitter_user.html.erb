@@ -6,7 +6,11 @@
 		</div>
 		<div class="left">
 			<p>
+			<% unless current_user %>
 			  <b><%= link_to twitter_user.screen_name, twitter_user_path(twitter_user) %></b>
+			<% else %>
+			  <b><%= link_to twitter_user.screen_name, "http://twitter.com/#{twitter_user.screen_name}" %></b>
+			<% end %>
 			  (<%=twitter_user.name%>)
 		  </p>
 		  <% unless current_user %>

@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
     if cat = params[:temat]
       @twitts = Twitt.paginate :page => params[:page], :per_page => 15, :conditions => "category = '#{cat}'", :order => "originally_created DESC"
     else
-      @twitts = Twitt.paginate :page => params[:page], :per_page => 15, :order => "originally_created DESC"
+      @twitts = Twitt.paginate :page => params[:page], :per_page => 15, :order => "originally_created DESC", :group => "twitter_user_id"
     end
   end
 
