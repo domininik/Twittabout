@@ -102,6 +102,14 @@ class TwitterUser < ActiveRecord::Base
                 user.statuses_count = ele['statuses_count']
                 user.screen_name = ele['screen_name']
                 user.save
+                
+                twitt = Twitt.new
+                twitt.body = tweet
+                twitt.originally_created = ele['status']['created_at'].to_datetime
+                twitt.twitt_id = ele['status']['id']
+                twitt.source = ele['status']['source']
+                twitt.twitter_user_id = user.id
+                twitt.save
               end
             end
           end
