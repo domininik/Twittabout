@@ -91,6 +91,17 @@ class TwitterUsersController < ApplicationController
     redirect_to(twitter_users_path)
   end
   
+  def verify_part
+    page = (params[:page] == "" ? 1 : params[:page])
+    users = TwitterUser.unverified.paginate :order => "created_at DESC", :page => page, :per_page => 50
+    users.each { |user| user.update_attribute(:polish, true) }
+    total = Setting.find_by_name('total_users')
+    new_value = TwitterUser.verified.size
+    total.update_attribute(:value, new_value) if total
+    flash[:notice] = "Zweryfikowano wyświetlonych użytkowników"    
+    redirect_to(twitter_users_path)
+  end
+  
   private
   
   def get_top_users

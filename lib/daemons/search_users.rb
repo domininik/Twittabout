@@ -11,6 +11,6 @@ Signal.trap("TERM") do
 end
 
 while $running do  
-  TwitterUser.first(:order => "RAND()").fetch_new_users
+  TwitterUser.all(:conditions => "polish is true", :order => "RAND()").first.fetch_new_users
   sleep 48
 end

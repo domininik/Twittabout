@@ -23,6 +23,12 @@
   	    <%= submit_tag 'weryfikuj wszystkich' %>
   	  <% end %>
 	  </div>
+	  <div class="admin_button right">
+  	  <% form_tag(:action => :verify_part) do %>
+        <%= hidden_field_tag(:page, params[:page])%>
+  	    <%= submit_tag 'weryfikuj wyświetlonych' %>
+  	  <% end %>
+	  </div>
 	  <%= clear %>
 	<% end %>
 	<hr />
